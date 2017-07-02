@@ -15,6 +15,8 @@ jQuery.fn.pagination = function (maxentries, opts) {
         current_page: 1,
         num_edge_entries: 1,
         link_to: "###",
+        first_text: "首页",
+        last_text: "尾页",
         prev_text: "上一页",
         next_text: "下一页",
         ellipse_text: "...",
@@ -93,9 +95,13 @@ jQuery.fn.pagination = function (maxentries, opts) {
                 if (appendopts.classes) { lnk.addClass(appendopts.classes); }
                 panel.append(lnk);
             }
+            // update firstPage
+            if (opts.first_text && (current_page > 0 || opts.prev_show_always)) {
+                appendItem(0, { text: opts.first_text, classes: "prev disabled" });
+            }
             // Generate "Previous"-Link
             if (opts.prev_text && (current_page > 0 || opts.prev_show_always)) {
-                appendItem(current_page - 1, { text: opts.prev_text, classes: "prev" });
+                appendItem(Number(current_page) - 1, { text: opts.prev_text, classes: "prev" });
             }
             // Generate starting points
 
@@ -123,11 +129,16 @@ jQuery.fn.pagination = function (maxentries, opts) {
                 }
 
             }
-            // Generate "Next"-Link
 
-            if (opts.next_text && (current_page < np || opts.next_show_always)) {
-                appendItem(current_page + 1, { text: opts.next_text, classes: "next" });
+            // Generate "Next"-Link
+            if (opts.next_text && (current_page < np - 1 || opts.next_show_always)) {
+                appendItem(Number(current_page) + 1, { text: opts.next_text, classes: "next" });
             }
+            // update lastPage
+            if (opts.last_text && (current_page < np - 1 || opts.next_show_always)) {               
+                appendItem(np, { text: opts.last_text, classes: "prev disabled" });
+            }
+            // update
         }
 
         // Extract current_page from options

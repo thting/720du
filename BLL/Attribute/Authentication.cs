@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Security;
 
-namespace du720.AdminBLL.Attribute
+namespace du720.BLL.Attribute
 {
     public class Authentication
     {

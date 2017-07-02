@@ -1,0 +1,170 @@
+﻿@using du720.Common;
+@{
+    ViewBag.Title = "List";
+}
+
+<div id="main">
+    <h1>商铺管理</h1>
+    <div class="top">
+        <select class="border-gray  h28  lh28 w100 " name="ddlStation" id="ddlStation">
+            <option selected="selected" value="0">选择站点</option>
+            @foreach (Enums.eStation item in Enum.GetValues(typeof(Enums.eStation)))
+            {
+                <option value="@item.GetHashCode()">@item.ToString()</option>
+            }
+        </select>&nbsp;
+        <select class="border-gray  h28  lh28 w100 " name="ddlType" id="ddlType">
+            <option selected="selected" value="0">选择分类</option>
+            @foreach (Enums.eShopType item in Enum.GetValues(typeof(Enums.eShopType)))
+            {
+                <option value="@item.GetHashCode()">@item.ToString()</option>
+            }
+        </select>&nbsp;
+        <button id="btnSearch" class="butbase w75 h28 f14 bg-blue">搜 索</button>
+        <a href="/Manage/ShopList/Add" target="mainFrame" class="butbase bg-orange w100" style=" margin-left:100px;">新增商铺</a>
+    </div>
+
+    <table class="tab tc">
+        <tbody>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    站点
+                </th>
+                <th>
+                    分类
+                </th>
+                <th>
+                    标题
+                </th>
+                <th>
+                    商铺名称
+                </th>
+                <th>
+                    商铺编号
+                </th>
+                <th>
+                    添加时间
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+        </tbody>
+        <tbody id="tablist">
+            <tr>
+                <td colspan='10' class="red">
+                    数据加载中...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page">
+        <div class="pagehtml pages left">
+        </div>
+        <div class="right">
+            当前页<span id="CurrentCount"></span>条，共<span id="recordCount"></span>条，
+            共<span id="TotalPage"></span>页，<span id="PageSize"></span>条/页
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var pageIndex = 1;
+    var pageSize = 10;
+
+    $(function () {
+
+        GetList(pageIndex);
+
+        $("#ddlStation,#ddlType").change(function () {
+            pageIndex = 1;
+            GetList(pageIndex);
+        });
+
+        //搜索
+        $("#btnSearch").click(function () {
+            pageIndex = 1;
+            GetList(pageIndex);
+        });
+    });
+
+    //get list data
+    function GetList(_pageIndex) {
+        pageIndex = _pageIndex;
+        var loadi;
+
+        $.ajax({
+            url: "/Manage/ShopList/GetList/",
+            type: "POST",
+            data: {
+                page: pageIndex,
+                pageSize: pageSize,
+                stationId: $("#ddlStation").val(),
+                shopType: $("#ddlType").val()
+            },
+            beforeSend: function () {
+                loadi = layer.load("加载中...");
+            },
+            success: function (data) {
+                layer.close(loadi);
+                //判断是否报错
+                if (typeof (data) == "object") {
+                    layer.alert(data.Message, 2, "提示");
+                    $("#tablist").html("");
+                    $(".page").hide();
+                    return;
+                }
+                $("#tablist").html(data);
+                var recordCount = $("#hidrecordCount").val();
+                if (recordCount > 0) {
+                    $(".page").show();
+                    $(".pagehtml").pagination(recordCount, { load_callback: false, callback: pageselectCallback, current_page: pageIndex, items_per_page: pageSize, link_to: "#" });
+                    ShowOtherPageItem(recordCount, pageSize);//显示分页其他项 
+                    TranleteBack();
+                }
+                else {
+                    $(".page").hide();
+                }
+
+            },
+            complete: function () {
+                layer.close(loadi);
+
+            }
+        });
+    }
+
+    // page call back function
+    function pageselectCallback(page_index) {
+        GetList(page_index);
+    }
+
+    //上架或下架
+    function SetVisible(id, visible) {
+        $.ajax({
+            type: 'POST',
+            url: "/Manage/ShopList/SetVisible",
+            data: {
+                id: id,
+                visible: visible
+            },
+            datatype: "json",
+            success: function (data) {
+                var handresult = JsonEval(data);
+                if (parseInt(handresult.StatsCode) == 200) {
+                    layermsg(handresult.Message, function () {
+                        GetList(pageIndex);
+                    }, 1, 10);
+                }
+                else {
+                    layer.alert(handresult.Message, 2, "提示");
+                }
+            }
+        });
+
+    }
+
+</script>

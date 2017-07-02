@@ -35,15 +35,15 @@ define(function () {
 
             return this.each(function () {
                 /**
-                * ¼ÆËã×î´ó·ÖÒ³ÏÔÊ¾ÊıÄ¿
+                * è®¡ç®—æœ€å¤§åˆ†é¡µæ˜¾ç¤ºæ•°ç›®
                 */
                 function numPages() {
                     return Math.ceil(maxentries / opts.items_per_page);
                 }
 
                 /**
-                * ¼«¶Ë·ÖÒ³µÄÆğÊ¼ºÍ½áÊøµã£¬ÕâÈ¡¾öÓÚcurrent_page ºÍ num_display_entries.
-                * @·µ»Ø {Êı×é(Array)}
+                * æç«¯åˆ†é¡µçš„èµ·å§‹å’Œç»“æŸç‚¹ï¼Œè¿™å–å†³äºcurrent_page å’Œ num_display_entries.
+                * @è¿”å› {æ•°ç»„(Array)}
                 */
                 function getInterval() {
                     var ne_half = Math.ceil(opts.num_display_entries / 2);
@@ -55,8 +55,8 @@ define(function () {
                 }
 
                 /**
-                * ·ÖÒ³Á´½ÓÊÂ¼ş´¦Àíº¯Êı
-                * @²ÎÊı {int} page_id ÎªĞÂÒ³Âë
+                * åˆ†é¡µé“¾æ¥äº‹ä»¶å¤„ç†å‡½æ•°
+                * @å‚æ•° {int} page_id ä¸ºæ–°é¡µç 
                 */
                 function pageSelected(page_id, evt) {
                     current_page = page_id;
@@ -74,19 +74,19 @@ define(function () {
                 }
 
                 /**
-                * ´Ëº¯Êı½«·ÖÒ³Á´½Ó²åÈëµ½ÈİÆ÷ÔªËØÖĞ
+                * æ­¤å‡½æ•°å°†åˆ†é¡µé“¾æ¥æ’å…¥åˆ°å®¹å™¨å…ƒç´ ä¸­
                 */
                 function drawLinks() {
                     panel.empty();
                     var interval = getInterval();
                     var np = numPages();
-                    // Õâ¸ö¸¨Öúº¯Êı·µ»ØÒ»¸ö´¦Àíº¯Êıµ÷ÓÃÓĞ×ÅÕıÈ·page_idµÄpageSelected¡£
+                    // è¿™ä¸ªè¾…åŠ©å‡½æ•°è¿”å›ä¸€ä¸ªå¤„ç†å‡½æ•°è°ƒç”¨æœ‰ç€æ­£ç¡®page_idçš„pageSelectedã€‚
                     var getClickHandler = function (page_id) {
                         return function (evt) { return pageSelected(page_id, evt); }
                     }
-                    //¸¨Öúº¯ÊıÓÃÀ´²úÉúÒ»¸öµ¥Á´½Ó(Èç¹û²»ÊÇµ±Ç°Ò³Ôò²úÉúspan±êÇ©)
+                    //è¾…åŠ©å‡½æ•°ç”¨æ¥äº§ç”Ÿä¸€ä¸ªå•é“¾æ¥(å¦‚æœä¸æ˜¯å½“å‰é¡µåˆ™äº§ç”Ÿspanæ ‡ç­¾)
                     var appendItem = function (page_id, appendopts) {
-                        page_id = page_id < 0 ? 0 : (page_id < np ? page_id : np - 1); // ¹æ·¶page idÖµ
+                        page_id = page_id < 0 ? 0 : (page_id < np ? page_id : np - 1); // è§„èŒƒpage idå€¼
                         appendopts = jQuery.extend({ text: page_id + 1, classes: "" }, appendopts || {});
                         if (page_id == current_page) {
                             var lnk = $("<span class='current'>" + (appendopts.text) + "</span>");
@@ -107,7 +107,7 @@ define(function () {
                         appendItem(0, { text: opts.first_text, classes: "prev" });
                     }
 
-                    // ²úÉúÆğÊ¼µã
+                    // äº§ç”Ÿèµ·å§‹ç‚¹
                     if (opts.prev_text && (current_page > 0 || opts.prev_show_always)) {
                         appendItem(current_page - 1, { text: opts.prev_text, classes: "prev" });
                     }
@@ -121,11 +121,11 @@ define(function () {
                             jQuery("<span>" + opts.ellipse_text + "</span>").appendTo(panel);
                         }
                     }
-                    // ²úÉúÄÚ²¿µÄĞ©Á´½Ó
+                    // äº§ç”Ÿå†…éƒ¨çš„äº›é“¾æ¥
                     for (var i = interval[0]; i < interval[1]; i++) {
                         appendItem(i);
                     }
-                    // ²úÉú½áÊøµã
+                    // äº§ç”Ÿç»“æŸç‚¹
                     if (interval[1] < np && opts.num_edge_entries > 0) {
                         if (np - opts.num_edge_entries > interval[1] && opts.ellipse_text) {
                             jQuery("<span>" + opts.ellipse_text + "</span>").appendTo(panel);
@@ -136,7 +136,7 @@ define(function () {
                         }
 
                     }
-                    // ²úÉú "Next"-Á´½Ó
+                    // äº§ç”Ÿ "Next"-é“¾æ¥
                     if (opts.next_text && (current_page < np - 1 || opts.next_show_always)) {
                         appendItem(current_page + 1, { text: opts.next_text, classes: "next" });
                     }
@@ -149,14 +149,14 @@ define(function () {
 
                 }
 
-                //´ÓÑ¡ÏîÖĞÌáÈ¡current_page
+                //ä»é€‰é¡¹ä¸­æå–current_page
                 var current_page = opts.current_page;
-                //´´½¨Ò»¸öÏÔÊ¾ÌõÊıºÍÃ¿Ò³ÏÔÊ¾ÌõÊıÖµ
+                //åˆ›å»ºä¸€ä¸ªæ˜¾ç¤ºæ¡æ•°å’Œæ¯é¡µæ˜¾ç¤ºæ¡æ•°å€¼
                 maxentries = (!maxentries || maxentries < 0) ? 1 : maxentries;
                 opts.items_per_page = (!opts.items_per_page || opts.items_per_page < 0) ? 1 : opts.items_per_page;
-                //´æ´¢DOMÔªËØ£¬ÒÔ·½±ã´ÓËùÓĞµÄÄÚ²¿½á¹¹ÖĞ»ñÈ¡
+                //å­˜å‚¨DOMå…ƒç´ ï¼Œä»¥æ–¹ä¾¿ä»æ‰€æœ‰çš„å†…éƒ¨ç»“æ„ä¸­è·å–
                 var panel = jQuery(this);
-                // »ñµÃ¸½¼Ó¹¦ÄÜµÄÔªËØ
+                // è·å¾—é™„åŠ åŠŸèƒ½çš„å…ƒç´ 
                 this.selectPage = function (page_id) { pageSelected(page_id); }
                 this.prevPage = function () {
                     if (current_page > 0) {
@@ -176,7 +176,7 @@ define(function () {
                         return false;
                     }
                 }
-                // ËùÓĞ³õÊ¼»¯Íê³É£¬»æÖÆÁ´½Ó
+                // æ‰€æœ‰åˆå§‹åŒ–å®Œæˆï¼Œç»˜åˆ¶é“¾æ¥
                 drawLinks();
 
             });

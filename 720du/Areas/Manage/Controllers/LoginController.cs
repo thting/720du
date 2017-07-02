@@ -8,47 +8,75 @@ using du720.Filter;
 using du720.BLL;
 using du720.Entity;
 using du720.Common;
-using du720.AdminBLL.Attribute;
+using Newtonsoft.Json;
+using du720.BLL.Attribute;
 
 namespace du720.Manage.Controllers
 {
     public class LoginController : Controller
     {
-        [HttpGet]
-        public ActionResult Index(string returnUrl = "")
+        /// <summary>
+        /// 登录页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
         {
-            ViewBag.returnUrl = returnUrl;
             return View();
         }
 
-        [HttpPost, AjaxFilter, ValidateInput(false)]
-        public ActionResult Login(string username, string password)
-        {
-            AdminUserEntity model = AdminUserBLL.GetLoginByName(username);
 
+        /// <summary>
+        /// 用户异步登录
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        [HttpPost, AjaxFilter, ValidateInput(false)]
+        public ActionResult Login(string Name, string Pw)
+        {
+            HandleResult hr = new HandleResult();
+            if (string.IsNullOrEmpty(Name) || Commons.IsIncludeSqlInjection(Name))
+            {
+                hr.StatsCode = 103;
+                hr.Message = "姓名不合法";
+                return Content(JsonConvert.SerializeObject(hr));
+            }
+
+            if (string.IsNullOrEmpty(Pw) || Commons.IsIncludeSqlInjection(Pw))
+            {
+                hr.StatsCode = 104;
+                hr.Message = "密码不合法";
+                return Content(JsonConvert.SerializeObject(hr));
+            }
+
+            AdminUserEntity model = AdminUserBLL.GetLoginByName(Name);
             if (model != null)
             {
-                if (model.PassWord == Commons.GetMD5Hash(password))
+                if (model.PassWord == Commons.GetMD5Hash(Pw))
                 {
                     Authentication.SetAuthCookie(model.Id, HttpUtility.UrlEncode(model.UserName, Encoding.GetEncoding("UTF-8")));
-                    return Json(new { code = 0, msg = "登录成功！" });
+                    hr.StatsCode = 200;
+                    hr.Message = "登陆成功";
+                    return Content(JsonConvert.SerializeObject(hr));
                 }
-                return Json(new { code = 1, msg = "密码错误！" });
+                hr.Message = "用户不存在或密码错误";
+                return Content(JsonConvert.SerializeObject(hr));
             }
-            return Json(new { code = 2, msg = "用户不存在或不可用！" });
+            hr.Message = "用户不存在或密码错误";
+            return Content(JsonConvert.SerializeObject(hr));
         }
 
+
+        /// <summary>
+        /// 注销
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
         public ActionResult LogOut()
         {
-            try
-            {
-                Authentication.SignOut();
-                return Json(true);
-            }
-            catch{
-                
-            }
-            return Json(false);
+            Authentication.SignOut();
+            return Content(JsonConvert.SerializeObject(""));
         }
+
     }
 }

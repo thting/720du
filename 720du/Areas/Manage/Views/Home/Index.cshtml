@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>后台管理</title>
+    <meta name="viewport" content="width=device-width" />
+   
+    <script type="text/javascript">
+        if (top.location != self.location) top.location.href = self.location;
+    </script>
+</head>
+<frameset cols="195,*" rows="*">
+    <frame id="leftFrame" name="leftFrame" src="/Manage/Home/left" scrolling="yes" frameborder="0" border="0" framespacing="0" noresize />
+    <frame id="mainFrame" name="mainFrame" src="/Manage/Home/desktop" scrolling="auto" frameborder="0" border="0" framespacing="0" />
+</frameset>
+<noframes>
+    <body bgcolor="#FFFFFF">
+        非常抱歉，您的浏览器不支持框架模式，无法使用本模块，请使用支持框架的浏览器。建议使用 Internet Explorer 6.0或版本更高的浏览器使用本模块。
+    </body>
+</noframes>
+</html>

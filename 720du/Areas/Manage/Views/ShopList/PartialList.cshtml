@@ -1,0 +1,58 @@
+﻿@using du720.Common;
+@using du720.Entity;
+@{
+    List<ShopListEntity> list = ViewBag.Data;
+    if (list != null && list.Count > 0)
+    {
+        int i = 1;
+        foreach (ShopListEntity item in list)
+        {
+            string trClass = "";
+            if (i % 2 == 0)
+            {
+                trClass = "bg-f1";
+            }
+            i++;
+            <tr class="@trClass">
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.StationId
+                </td>
+                <td>
+                    @item.ShopType
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.ShopName
+                </td>
+                <td>
+                    @item.ShopNo
+                </td>
+                <td>@item.AddTime.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a href='javascript:void(0);' onclick="SetVisible(@item.Id)">删除</a>
+                    <a href='/ShopList/Add/@item.Id' class='blue'>[编辑]</a>
+                </td>
+            </tr>
+        }
+
+    }
+    else
+    {
+        <tr>
+            <td colspan='10' class="red">
+                没有找到您所需要的数据!
+            </td>
+        </tr>
+    }
+
+}
+<input id="hidrecordCount" type="hidden" value="@ViewBag.RecordCount" />
+<input id="hidCurrentCount" type="hidden" value="@list.Count" />
+<input id="hidTotalPage" type="hidden" value="@ViewBag.TotalPage" />
+
+

@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>菜单栏</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Content/css/admin/style.css" rel="stylesheet" />
+    <link href="/Content/css/admin/reset.css" rel="stylesheet" />
+    <link href="/Content/css/admin/admin.css" rel="stylesheet" />
+    <link href="/Content/css/admin/pages.css" rel="stylesheet" />
+    <script src="/Content/js/lib/jquery/jquery-1.8.0.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="siderLeft" class="siderLeft gray" style="overflow: auto;height:100%;">
+        <div class="siderleft-top">
+            <h1 class="f32">
+                <span class="f18">
+                    后台管理
+                </span>
+            </h1>
+        </div>
+        <ul class="siderleft-mune">
+            <li>
+                <a href="#"><span class="m-01"></span>登陆状态</a>
+                <ul>
+                    @{ du720.Entity.UserEntity user = du720.BLL.Attribute.Authentication.GetUserEntity();}
+                    <li>用户名：@user.UserName</li>
+                    <li>
+                        <div>
+                            <a href="#" onclick="logout()" id="lnkLogout">注销登录</a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <div id="divBar" class="bar">
+                <ul id="main-nav">
+                    <li>
+                        <a href="javascript:void(0);" class="nav-top-item">
+                            <span class="m-02"></span>商铺管理
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/manage/shoplist/list" target="mainFrame">
+                                   商铺管理
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+
+        function logout() {
+            $.ajax({
+                url: "/Login/LogOut/",
+                type: "POST",
+                data: {},
+                success: function (data) {
+                    top.location.href = "/Login/Index";
+                }
+            });
+        }
+
+
+    </script>
+</body>
+</html>

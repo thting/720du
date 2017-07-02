@@ -1,4 +1,4 @@
-﻿using du720.AdminBLL.Attribute;
+﻿using du720.BLL.Attribute;
 using System;
 using System.Collections.Generic;
 using System.Linq;

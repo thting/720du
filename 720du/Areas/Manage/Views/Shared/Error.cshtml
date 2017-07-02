@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>错误</title>
+        <style type="text/css">
+            body {
+                margin: 8% auto 0;
+                max-width: 550px;
+                min-height: 200px;
+                padding: 10px;
+                font-family: Verdana,Arial,Helvetica,sans-serif;
+                font-size: 14px;
+            }
+
+            p {
+                color: #555;
+                margin: 10px 10px;
+            }
+
+            img {
+                border: 0px;
+            }
+
+            .d {
+                color: #404040;
+            }
+
+            .red {
+                color: Red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="text-danger">错误。</h1>
+        <h2 class="text-danger">处理你的请求时出错。</h2>
+        <p>
+            @Model.Exception.Message
+        </p>
+    </body>
+</html>

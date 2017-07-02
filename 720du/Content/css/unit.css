@@ -1,0 +1,99 @@
+﻿
+@charset "utf-8";
+body, div, ul, li, h1, h2, h3, h4, form, p, a, img, table, fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+    font-family: 微软雅黑,宋体;
+    font-size: 12px;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #264AB4;
+    font-family: 微软雅黑,宋体;
+    font-weight: bold;
+}
+li {
+    list-style: none outside none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: inherit;
+}
+fieldset {
+    border: 1px solid #C3CDE1;
+    padding: 5px;
+}
+legend {
+    color: #264AB4;
+    font-size: 14px;
+    margin: 0 0 0 5px;
+}
+a {
+    color: #264AB4;
+    text-decoration: none;
+}
+a:hover {
+    color: #000000;
+}
+a:active {
+    color: #777777;
+}
+a:focus {
+    outline: 1px none;
+}
+.clear {
+    clear: both;
+}
+#main_box {
+    width: 100%;
+}
+#main_box #main-content {
+  
+    margin: 5px 5px 0 0;
+    padding: 0;
+}
+#main_box #main-content h3 {
+    background: none repeat scroll 0 0 #E2F4FE;
+   
+    border-top: 1px solid #FFFFFF;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 0.9em;
+    width: 100%;
+}
+#main_box #main-content .content-box {
+    margin: 0;
+    padding: 10px;
+}
+#main_box #main-content table td {
+    border: 1px solid #B7C1D6;
+    padding: 5px;
+}
+/*上传图片的模拟按钮*/
+.defaultTheme-button-file
+{
+    filter: alpha (opacity=0);
+    position: absolute;
+    opacity: 0; 
+    width: 150px; 
+    height: 25px;
+    margin-top:5px;     
+
+}
+
+.defaultTheme-button
+    {
+        font-size: 12px;
+        text-align: center;
+        width:148px;
+        height:25px;
+        z-index: 500;
+        margin-top:5px;      
+    }
+    #main-content input[type='text']{ border:1px solid #ccc; height:25px;}
+     #main-content textarea{ border:1px solid #ccc;}

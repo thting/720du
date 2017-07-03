@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace du720.Controllers
 {
-    public class HomeController : Controller
+    public class ShopController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Shop/
         public ActionResult Index()
         {
             return View();

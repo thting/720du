@@ -1,0 +1,199 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>有奖征集</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link href="~/Content/css/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <style type="text/css">
+        #head-slide {
+            border-bottom: 0;
+        }
+
+        #head-slide {
+            border-bottom: 0;
+        }
+
+        #head-slide {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .native-scroll {
+            overflow: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        .head-slides {
+            position: relative;
+            width: 100%;
+            /* background: #64c1ed; */
+            height: 100%;
+            z-index: 1;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-transition-property: -webkit-transform;
+            -moz-transition-property: -moz-transform;
+            -o-transition-property: -o-transform;
+            -ms-transition-property: -ms-transform;
+            transition-property: transform;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            color: white;
+        }
+
+        .head-slides .slide-items.selected {
+            font-weight: 700;
+        }
+
+        .head-slides .slide-items {
+            font-size: 14px;
+            line-height: 40px;
+        }
+
+
+        .head-slides .slide-items {
+            user-select: none;
+            display: block;
+            width: auto;
+            float: left;
+            position: relative;
+            padding: 0 20px;
+            color: #333;
+            line-height: 44px;
+            font-size: 16px;
+            text-align: center;
+            box-sizing: border-box;
+            transition: all ease .3s;
+            -webkit-flex-shrink: 0;
+            -ms-flex: 0 0 auto;
+            flex-shrink: 0;
+            z-index: 2;
+            padding: 0 10px;
+            background: #64c1ed;
+            margin-right: 10px;
+            font-weight: 700;
+            box-shadow: 1px 2px 3px #322e2e;
+        }
+
+        .withdrawals-panel {
+            border: solid 1px #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 0.8rem 0.6rem;
+            margin-bottom: 0.3rem;
+            overflow: hidden;
+            background: #fadae7;
+        }
+
+        .header-form {
+            position: relative;
+            width: 100%;
+            background: #afe5ff;
+            border-bottom: 1px solid #F1F1F1;
+            height: 79px;
+            text-align: center;
+            line-height: 81px;
+            font-size: 22px;
+            box-shadow: 1px 2px 3px #cbcbcb;
+            color: #4f5051;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        .biaoti {
+            border-bottom: 1px solid #000000;
+            margin: 0;
+            width: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .cart-panel {
+            padding: 9px 10px;
+            background: #ffffff !important;
+        }
+
+        input {
+            border: none;
+            border-bottom: 1px solid #8aa3a7;
+        }
+
+        body {
+            color: #8aa3a7;
+        }
+
+        .am-form select {
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            -webkit-border-radius: 0;
+            background: #f2d9e6 no-repeat 100% center;
+            color: #8aa3a7;
+            font-size: 12px;
+        }
+
+        select {
+            border-color: #8aa3a7;
+        }
+
+        select option {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="padding: 40px;">
+        <h1 style="border-bottom:1px solid grey">有奖征集</h1>
+        <div class="cart-panel">
+            <form class="am-form">
+                <div class="am-form-group am-form-icon">
+                    征集类型
+                    <select name="" class="select-area am-radius">
+                        <option>美食餐饮</option>
+                        <option>美食餐饮</option>
+                        <option>美食餐饮</option>
+                        <option>美食餐饮</option>
+                    </select>
+                </div>
+                <div class="am-form-group am-form-icon">
+                    联系人
+                    <input value="">            </input>
+                </div>
+                <div class="am-form-group am-form-icon">
+                    手机号码
+                    <input value="">            </input>
+                </div>
+                <div class="am-form-group am-form-icon">
+                    推荐原因
+                    <textarea value=""></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

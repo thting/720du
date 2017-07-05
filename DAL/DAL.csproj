@@ -47,6 +47,8 @@
     <Compile Include="AdminUserDAL.cs" />
     <Compile Include="CollectInfoDAL.Base.cs" />
     <Compile Include="CollectInfoDAL.cs" />
+    <Compile Include="ExchangeCodeDAL.Base.cs" />
+    <Compile Include="ExchangeCodeDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopListDAL.Base.cs" />
     <Compile Include="ShopListDAL.cs" />

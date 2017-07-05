@@ -43,6 +43,7 @@
     <Compile Include="AdminUserBLL.cs" />
     <Compile Include="Attribute\Authentication.cs" />
     <Compile Include="CollectInfoBLL.cs" />
+    <Compile Include="ExchangeCodeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopListBLL.cs" />
   </ItemGroup>

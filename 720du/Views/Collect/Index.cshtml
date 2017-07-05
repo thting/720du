@@ -170,30 +170,107 @@
     <div class="container" style="padding: 40px;">
         <h1 style="border-bottom:1px solid grey">有奖征集</h1>
         <div class="cart-panel">
-            <form class="am-form">
+            <form id="createForm" class="am-form" method="post">
                 <div class="am-form-group am-form-icon">
                     征集类型
-                    <select name="" class="select-area am-radius">
-                        <option>美食餐饮</option>
-                        <option>美食餐饮</option>
-                        <option>美食餐饮</option>
-                        <option>美食餐饮</option>
+                    <select id="ddlType" name="ddlType" class="select-area am-radius">
+                        @foreach (du720.Common.Enums.eShopType item in Enum.GetValues(typeof(du720.Common.Enums.eShopType)))
+                        {
+                            <option value="@item.GetHashCode()">@item.ToString()</option>
+                        }
                     </select>
                 </div>
                 <div class="am-form-group am-form-icon">
                     联系人
-                    <input value="">            </input>
+                    <input id="txtUserName" name="txtUserName" value="" />
                 </div>
                 <div class="am-form-group am-form-icon">
                     手机号码
-                    <input value="">            </input>
+                    <input id="txtPhone" name="txtPhone" value="" />
                 </div>
                 <div class="am-form-group am-form-icon">
                     推荐原因
-                    <textarea value=""></textarea>
+                    <textarea id="txtReason" name="txtReason"></textarea>
+                </div>
+                <div class="am-form-group am-form-icon" style="text-align:center;">
+                    <input type="button" id="btnSend" name="btnSend" value="提交" />
                 </div>
             </form>
         </div>
     </div>
+    <script src="~/Content/js/Lib/jquery/1.8.0/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/Module/Common.js" type="text/javascript"></script>
+    <script src="~/Content/js/Lib/Layer/layer.m.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSend").on("click", function (e) {
+                doSubmit(e);
+            });
+        });
+
+        function doSubmit(e) {
+            e.preventDefault();
+            var txtUserName = $.trim($('#txtUserName').val());
+            var txtPhone = $.trim($('#txtPhone').val());
+            var txtReason = $.trim($('#txtReason').val());
+            var ddlType = $.trim($('#ddlType').val());
+
+            if (txtUserName == "") {
+                layerHelp.msg("联系人不能为空");
+                return false;
+            }
+            if (txtPhone == "") {
+                layerHelp.msg("手机号码不能为空");
+                return false;
+            }
+            if (txtReason == "") {
+                layerHelp.msg("推荐原因不能为空");
+                return false;
+            }
+            else if (txtReason.length > 200) {
+                layerHelp.msg("推荐原因太长了");
+                return false;
+            }
+            
+
+            var ajaxParam = {
+                txtUserName: txtUserName,
+                txtPhone: txtPhone,
+                txtReason: txtReason,
+                ddlType: ddlType
+            };
+
+            var sucess = false;
+            $.ajax({
+                type: "POST",
+                url: "/Collect/doSave",
+                data: ajaxParam,
+                dataType: "json",
+                beforeSend: function () { layerHelp.loading(); $("#btnSend").attr("disabled", "disabled").text('提交...'); },
+                success: function (result) {
+                    layer.closeAll();
+                    var handleResult = JsonEval(result);
+                    if (handleResult.StatsCode == 200) {
+                        sucess = true;
+                        $("#btnSend").text('提交成功');
+                        var str = handleResult.Message;
+                        layer.open({
+                            content: '<div class="upload-succ"><div><p><a href="javascript:layer.closeAll();"></a></p><p>已提交成功</p></div></div>',
+                            style: 'border:none;',
+                            time: 3,
+                            end: function () {
+                                window.location.href = window.location.href;
+                            }
+                        });
+                    } else {
+                        layerHelp.msg(handleResult.Message);
+                    }
+                },
+                complete: function () {
+                    if (!sucess) { $("#btnSend").removeAttr("disabled").text('提交'); }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

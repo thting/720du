@@ -1,5 +1,15 @@
-﻿@{
+﻿@using du720.Common;
+@using du720.Entity;
+@{
     Layout = null;
+    int StationId = ViewBag.StationId;
+    int ShopType = ViewBag.ShopType;
+    string stationName = "4号线";
+    if(Enum.IsDefined(typeof(du720.Common.Enums.eStation), StationId))
+    {
+        stationName = ((du720.Common.Enums.eStation)StationId).ToString() + "站";
+    }
+    int i = 0;
 }
 
 <!doctype html>
@@ -115,86 +125,134 @@
             color: #4f5051;
             margin-bottom: 10px;
         }
+        .ac {
+            border: solid 1px #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 0.8rem 0.6rem;
+            margin-bottom: 0.3rem;
+            overflow: hidden;
+            background: #eee;
+            text-align:center;
+        }
     </style>
 </head>
 
 <body>
     <div class="header-form">
-
-        4号线吃喝玩乐大全
+        @(stationName)吃喝玩乐大全
     </div>
 
     <div id="head-slide" class="native-scroll">
         <ul class="head-slides">
-            <li class="slide-items selected" style="background :#fadae7">地铁商铺</li>
-            <li class="slide-items" style="background:#ffe749">美食餐饮</li>
-            <li class="slide-items" style="background:#afe5ff">休闲娱乐</li>
-            <li class="slide-items" style="background:#e2ff7e">周边景点</li>
+            @foreach (Enums.eShopType item in Enum.GetValues(typeof(Enums.eShopType)))
+            {
+                string color = "#fadae7";
+                if (i % 4 == 0)
+                {
+                    color = "#fadae7";
+                }
+                else if (i % 4 == 1)
+                {
+                    color = "#ffe749";
+                }
+                else if (i % 4 == 2)
+                {
+                    color = "#afe5ff";
+                }
+                else if (i % 4 == 3)
+                {
+                    color = "#e2ff7e";
+                }
+                i++;
+                <li class="slide-items @(item.GetHashCode() == ShopType ? "selected" : "")" style="background:@(color)">@item.ToString()</li>
+            }
         </ul>
     </div>
 
     <div class="container">
         <div class="gray-panel">
-            <div class="my-search-title-panel">
-                <div class="withdrawals-panel">
-                    <div class="groupby-img-panle"><a href="#"><img src="/content/images/imgimg.png" class="am-img-responsive" /></a></div>
-                    <div class="groupby-info-panle">
-                        <h3><a href="#">BREAKFASR ALL DAY 元气早餐</a></h3>
-                        <p>.No.130117</p>
-                        <p style="    border-bottom: 1px solid #ababaa;">Add.龙胜地铁站C出口左侧C03</p>
-                    </div>
-                </div>
-
-
-                <div class="withdrawals-panel">
-                    <div class="groupby-img-panle"><a href="#"><img src="/content/images/imgimg.png" class="am-img-responsive" /></a></div>
-                    <div class="groupby-info-panle">
-                        <h3><a href="#">BREAKFASR ALL DAY 元气早餐</a></h3>
-                        <p>.No.130117</p>
-                        <p style="border-bottom: 1px solid #ababaa;">Add.龙胜地铁站C出口左侧C03</p>
-                    </div>
-                </div>
-
-
-                <div class="withdrawals-panel">
-                    <div class="groupby-img-panle"><a href="#"><img src="/content/images/imgimg.png" class="am-img-responsive" /></a></div>
-                    <div class="groupby-info-panle">
-                        <h3><a href="#">BREAKFASR ALL DAY 元气早餐</a></h3>
-                        <p>.No.130117</p>
-                        <p style="    border-bottom: 1px solid #ababaa;">Add.龙胜地铁站C出口左侧C03</p>
-                    </div>
-                </div>
-
-
-                <div class="withdrawals-panel">
-                    <div class="groupby-img-panle"><a href="#"><img src="/content/images/imgimg.png" class="am-img-responsive" /></a></div>
-                    <div class="groupby-info-panle">
-                        <h3><a href="#">BREAKFASR ALL DAY 元气早餐</a></h3>
-                        <p>.No.130117</p>
-                        <p style="    border-bottom: 1px solid #ababaa;">Add.龙胜地铁站C出口左侧C03</p>
-                    </div>
-                </div>
-
-                <div class="withdrawals-panel">
-                    <div class="groupby-img-panle"><a href="#"><img src="/content/images/imgimg.png" class="am-img-responsive" /></a></div>
-                    <div class="groupby-info-panle">
-                        <h3><a href="#">BREAKFASR ALL DAY 元气早餐</a></h3>
-                        <p>.No.130117</p>
-                        <p style="    border-bottom: 1px solid #ababaa;">Add.龙胜地铁站C出口左侧C03</p>
-                    </div>
-                </div>
-
-
-                <div class="withdrawals-panel">
-                    <div class="groupby-img-panle"><a href="#"><img src="/content/images/imgimg.png" class="am-img-responsive" /></a></div>
-                    <div class="groupby-info-panle">
-                        <h3><a href="#">BREAKFASR ALL DAY 元气早餐</a></h3>
-                        <p>.No.130117</p>
-                        <p style="    border-bottom: 1px solid #ababaa;">Add.龙胜地铁站C出口左侧C03</p>
-                    </div>
-                </div>
-            </div>
+            <div id="divList" class="my-search-title-panel"></div>
         </div>
     </div>
+    <script src="~/Content/js/Lib/jquery/1.8.0/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/Module/Common.js" type="text/javascript"></script>
+    <script src="~/Content/js/Lib/Layer/layer.m.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var stationId = @StationId;
+        var shopType = @ShopType;
+        $(function () {
+            nextpage();
+        });
+
+        var page = 1;
+        var isLoading = false;
+        //加载更多列表
+        function nextpage() {
+            if (isLoading) return false;
+            if (page == 1) {
+                $("#divList").empty();
+            }
+            $(window).off();
+            $.ajax({
+                type: "post",
+                url: "/Shop/GetList",
+                datatype: "json",
+                data: {
+                    page: page,
+                    stationId: stationId,
+                    shopType: shopType
+                },
+                beforeSend: function () {
+                    isLoading = true;
+                    $("#divList").append($('<div class="ac voteloading">加载中...</div>'));
+                },
+                success: function (data) {
+                    $("#divList .voteloading").remove();
+                    var result = JsonEval(data);
+                    if (result.StatsCode == 200 && result.Data != null && result.Data.list.length > 0) {
+                        createHTML(result.Data.list);
+                        page++;
+                        if (result.Data.list.length < 20) {
+                            $("#divList").append($('<div class="ac">没有更多了</div>'));
+                        }
+                        else {
+                            $(window).off().on("scroll", function () {
+                                if ($(window).scrollTop() > $("body").height() - $(window).height() - 20) {
+                                    nextpage();
+                                }
+                            });
+                        }
+                    }
+                    else {
+                        if (page == 1) {
+                            $("#divList").append($('<div class="ac">没有数据</div>'));
+                        }
+                        else {
+                            $("#divList").append($('<div class="ac">没有更多了</div>'));
+                        }
+                    }
+                    isLoading = false;
+                }
+            });
+        }
+
+        function createHTML(data) {
+            var str = "";
+            $.each(data, function (i, item) {
+                str += '<section id="r' + item.Id + '" class="flexbox listItem" data-floor="' + item.Replyfloor + '" onclick="quoteReply(' + item.Id + ', ' + item.Replyfloor + ');">';
+                str += '<div id="r' + item.Id + '" class="withdrawals-panel">';
+                str += '    <div class="groupby-img-panle"><a href="/Shop/Detail/' + item.Id + '"><img src="/upload/' + item.ShopImageUrl + '" class="am-img-responsive" /></a></div>';
+                str += '    <div class="groupby-info-panle">';
+                str += '        <h3><a href="/Shop/Detail/' + item.Id + '">' + item.ShopName + '</a></h3>';
+                str += '        <p>.No.' + item.ShopNo + '</p>';
+                str += '        <p style="border-bottom: 1px solid #ababaa;">' + item.Address + '</p>';
+                str += '    </div>';
+                str += '</div>';
+            });
+
+            $("#divList").append(str);
+        }
+    </script>
 </body>
 </html>

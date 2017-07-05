@@ -9,6 +9,11 @@ namespace du720.BLL
     /// </summary>
     public class ShopListBLL
     {
+        public static ShopListEntity GetById(int id)
+        {
+            return ShopListDAL.GetById(id);
+        }
+
         /// <summary>
         /// 获取列表-分页
         /// </summary>

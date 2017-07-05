@@ -213,5 +213,15 @@ namespace du720.Common
             }
             return flag;
         }
+
+        /// <summary>
+        /// 生产随机兑换码
+        /// </summary>
+        /// <returns></returns>
+        public static string GenerateExchangeCode()
+        {
+            Random ran = new Random();
+            return string.Format("{0}{1}{2}", ran.Next(1000), DateTime.Now.ToString("yyyyMMddHHmmssffff"), ran.Next(1000000));
+        }
     }
 }

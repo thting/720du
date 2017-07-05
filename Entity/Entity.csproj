@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AdminUserEntity.cs" />
     <Compile Include="CollectInfoEntity.cs" />
+    <Compile Include="ExchangeCodeEntity.cs" />
     <Compile Include="HandleResult.cs" />
     <Compile Include="PageSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

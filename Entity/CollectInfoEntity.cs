@@ -13,6 +13,7 @@ namespace du720.Entity
         private string _UserName;
         private string _Phone;
         private string _Reason;
+        private DateTime _AddTime;
         #endregion
 
         #region Public Properties
@@ -48,6 +49,12 @@ namespace du720.Entity
         {
             get { return this._Reason; }
             set { this._Reason = value; }
+        }
+
+        public DateTime AddTime
+        {
+            get { return this._AddTime; }
+            set { this._AddTime = value; }
         }
 
         #endregion

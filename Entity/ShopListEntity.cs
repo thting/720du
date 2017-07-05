@@ -11,6 +11,7 @@ namespace du720.Entity
         private int _Id;
         private int _StationId;
         private int _ShopType;
+        private string _ShopImageUrl;
         private string _ShopName;
         private string _Title;
         private string _Summury;
@@ -44,6 +45,12 @@ namespace du720.Entity
         {
             get { return this._ShopType; }
             set { this._ShopType = value; }
+        }
+
+        public string ShopImageUrl
+        {
+            get { return this._ShopImageUrl; }
+            set { this._ShopImageUrl = value; }
         }
 
         /// <summary>

@@ -12,11 +12,11 @@ namespace du720.DAL
     {
         #region ConstVariables
         private const string C_TABLE_NAME = "CollectInfo";
-        private const string C_SP_COLLECTINFO_FIELDS = "[Id],[CollectType],[UserName],[Phone],[Reason]";
-        private const string C_SP_COLLECTINFO_INSERT = "INSERT INTO [CollectInfo]([CollectType],[UserName],[Phone],[Reason]) VALUES(@CollectType,@UserName,@Phone,@Reason);SET @Id = SCOPE_IDENTITY();";
-        private const string C_SP_COLLECTINFO_UPDATE = "UPDATE [CollectInfo] SET [CollectType]=@CollectType,[UserName]=@UserName,[Phone]=@Phone,[Reason]=@Reason WHERE [Id] = @Id";
+        private const string C_SP_COLLECTINFO_FIELDS = "[Id],[CollectType],[UserName],[Phone],[Reason],[AddTime]";
+        private const string C_SP_COLLECTINFO_INSERT = "INSERT INTO [CollectInfo]([CollectType],[UserName],[Phone],[Reason],[AddTime]) VALUES(@CollectType,@UserName,@Phone,@Reason,@AddTime);SET @Id = SCOPE_IDENTITY();";
+        private const string C_SP_COLLECTINFO_UPDATE = "UPDATE [CollectInfo] SET [CollectType]=@CollectType,[UserName]=@UserName,[Phone]=@Phone,[Reason]=@Reason,[AddTime]=@AddTime WHERE [Id] = @Id";
         private const string C_SP_COLLECTINFO_DELETE = "DELETE [CollectInfo] WHERE [Id] = @Id";
-        private const string C_SP_COLLECTINFO_GET = "SELECT [Id],[CollectType],[UserName],[Phone],[Reason] FROM [CollectInfo] WHERE [Id] = @Id";
+        private const string C_SP_COLLECTINFO_GET = "SELECT [Id],[CollectType],[UserName],[Phone],[Reason],[AddTime] FROM [CollectInfo] WHERE [Id] = @Id";
         #endregion
 
         private static string ConnectionString
@@ -46,6 +46,7 @@ namespace du720.DAL
             commandParms.Add(SqlHelper.CreateParam("@UserName", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.UserName));
             commandParms.Add(SqlHelper.CreateParam("@Phone", SqlDbType.VarChar, 11, ParameterDirection.Input, entity.Phone));
             commandParms.Add(SqlHelper.CreateParam("@Reason", SqlDbType.NVarChar, 200, ParameterDirection.Input, entity.Reason));
+            commandParms.Add(SqlHelper.CreateParam("@AddTime", SqlDbType.DateTime, 0, ParameterDirection.Input, entity.AddTime));
 
             SqlHelper.ExecuteNonQuery(ConnectionString, CommandType.Text, C_SP_COLLECTINFO_INSERT, commandParms);
             entity.Id = Convert.ToInt32(id_Id.Value);
@@ -86,6 +87,7 @@ namespace du720.DAL
             commandParms.Add(SqlHelper.CreateParam("@UserName", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.UserName));
             commandParms.Add(SqlHelper.CreateParam("@Phone", SqlDbType.VarChar, 11, ParameterDirection.Input, entity.Phone));
             commandParms.Add(SqlHelper.CreateParam("@Reason", SqlDbType.NVarChar, 200, ParameterDirection.Input, entity.Reason));
+            commandParms.Add(SqlHelper.CreateParam("@AddTime", SqlDbType.DateTime, 0, ParameterDirection.Input, entity.AddTime));
 
             SqlHelper.ExecuteNonQuery(ConnectionString, CommandType.Text, C_SP_COLLECTINFO_UPDATE, commandParms);
         }
@@ -197,6 +199,7 @@ namespace du720.DAL
             entity.UserName = row["UserName"].ToString();
             entity.Phone = row["Phone"].ToString();
             entity.Reason = row["Reason"].ToString();
+            entity.AddTime = Convert.ToDateTime(row["AddTime"]);
 
             return entity;
         }
@@ -212,6 +215,7 @@ namespace du720.DAL
             entity.UserName = reader["UserName"].ToString();
             entity.Phone = reader["Phone"].ToString();
             entity.Reason = reader["Reason"].ToString();
+            entity.AddTime = Convert.ToDateTime(reader["AddTime"]);
 
             return entity;
         }

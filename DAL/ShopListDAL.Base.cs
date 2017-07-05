@@ -12,11 +12,11 @@ namespace du720.DAL
     {
         #region ConstVariables
         private const string C_TABLE_NAME = "ShopList";
-        private const string C_SP_SHOPLIST_FIELDS = "[Id],[StationId],[ShopType],[ShopName],[Title],[Summury],[ShopNo],[Address],[AddTime],[Operateuser]";
-        private const string C_SP_SHOPLIST_INSERT = "INSERT INTO [ShopList]([StationId],[ShopType],[ShopName],[Title],[Summury],[ShopNo],[Address],[AddTime],[Operateuser]) VALUES(@StationId,@ShopType,@ShopName,@Title,@Summury,@ShopNo,@Address,@AddTime,@Operateuser);SET @Id = SCOPE_IDENTITY();";
-        private const string C_SP_SHOPLIST_UPDATE = "UPDATE [ShopList] SET [StationId]=@StationId,[ShopType]=@ShopType,[ShopName]=@ShopName,[Title]=@Title,[Summury]=@Summury,[ShopNo]=@ShopNo,[Address]=@Address,[AddTime]=@AddTime,[Operateuser]=@Operateuser WHERE [Id] = @Id";
+        private const string C_SP_SHOPLIST_FIELDS = "[Id],[StationId],[ShopType],[ShopImageUrl],[ShopName],[Title],[Summury],[ShopNo],[Address],[AddTime],[Operateuser]";
+        private const string C_SP_SHOPLIST_INSERT = "INSERT INTO [ShopList]([StationId],[ShopType],[ShopImageUrl],[ShopName],[Title],[Summury],[ShopNo],[Address],[AddTime],[Operateuser]) VALUES(@StationId,@ShopType,@ShopImageUrl,@ShopName,@Title,@Summury,@ShopNo,@Address,@AddTime,@Operateuser);SET @Id = SCOPE_IDENTITY();";
+        private const string C_SP_SHOPLIST_UPDATE = "UPDATE [ShopList] SET [StationId]=@StationId,[ShopType]=@ShopType,[ShopImageUrl]=@ShopImageUrl,[ShopName]=@ShopName,[Title]=@Title,[Summury]=@Summury,[ShopNo]=@ShopNo,[Address]=@Address,[AddTime]=@AddTime,[Operateuser]=@Operateuser WHERE [Id] = @Id";
         private const string C_SP_SHOPLIST_DELETE = "DELETE [ShopList] WHERE [Id] = @Id";
-        private const string C_SP_SHOPLIST_GET = "SELECT [Id],[StationId],[ShopType],[ShopName],[Title],[Summury],[ShopNo],[Address],[AddTime],[Operateuser] FROM [ShopList] WHERE [Id] = @Id";
+        private const string C_SP_SHOPLIST_GET = "SELECT [Id],[StationId],[ShopType],[ShopImageUrl],[ShopName],[Title],[Summury],[ShopNo],[Address],[AddTime],[Operateuser] FROM [ShopList] WHERE [Id] = @Id";
         #endregion
 
         private static string ConnectionString
@@ -44,6 +44,7 @@ namespace du720.DAL
             commandParms.Add(id_Id);
             commandParms.Add(SqlHelper.CreateParam("@StationId", SqlDbType.Int, 0, ParameterDirection.Input, entity.StationId));
             commandParms.Add(SqlHelper.CreateParam("@ShopType", SqlDbType.Int, 0, ParameterDirection.Input, entity.ShopType));
+            commandParms.Add(SqlHelper.CreateParam("@ShopImageUrl", SqlDbType.VarChar, 200, ParameterDirection.Input, entity.ShopImageUrl));
             commandParms.Add(SqlHelper.CreateParam("@ShopName", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.ShopName));
             commandParms.Add(SqlHelper.CreateParam("@Title", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.Title));
             commandParms.Add(SqlHelper.CreateParam("@Summury", SqlDbType.NVarChar, 100, ParameterDirection.Input, entity.Summury));
@@ -89,6 +90,7 @@ namespace du720.DAL
             commandParms.Add(SqlHelper.CreateParam("@Id", SqlDbType.Int, 0, ParameterDirection.Input, entity.Id));
             commandParms.Add(SqlHelper.CreateParam("@StationId", SqlDbType.Int, 0, ParameterDirection.Input, entity.StationId));
             commandParms.Add(SqlHelper.CreateParam("@ShopType", SqlDbType.Int, 0, ParameterDirection.Input, entity.ShopType));
+            commandParms.Add(SqlHelper.CreateParam("@ShopImageUrl", SqlDbType.VarChar, 200, ParameterDirection.Input, entity.ShopImageUrl));
             commandParms.Add(SqlHelper.CreateParam("@ShopName", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.ShopName));
             commandParms.Add(SqlHelper.CreateParam("@Title", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.Title));
             commandParms.Add(SqlHelper.CreateParam("@Summury", SqlDbType.NVarChar, 100, ParameterDirection.Input, entity.Summury));
@@ -205,6 +207,7 @@ namespace du720.DAL
             entity.Id = Convert.ToInt32(row["Id"]);
             entity.StationId = Convert.ToInt32(row["StationId"]);
             entity.ShopType = Convert.ToInt32(row["ShopType"]);
+            if (Convert.IsDBNull(row["ShopImageUrl"])) entity.ShopImageUrl = null; else entity.ShopImageUrl = row["ShopImageUrl"].ToString();
             entity.ShopName = row["ShopName"].ToString();
             entity.Title = row["Title"].ToString();
             if (Convert.IsDBNull(row["Summury"])) entity.Summury = null; else entity.Summury = row["Summury"].ToString();
@@ -225,6 +228,7 @@ namespace du720.DAL
             entity.Id = Convert.ToInt32(reader["Id"]);
             entity.StationId = Convert.ToInt32(reader["StationId"]);
             entity.ShopType = Convert.ToInt32(reader["ShopType"]);
+            if (Convert.IsDBNull(reader["ShopImageUrl"])) entity.ShopImageUrl = null; else entity.ShopImageUrl = reader["ShopImageUrl"].ToString();
             entity.ShopName = reader["ShopName"].ToString();
             entity.Title = reader["Title"].ToString();
             if (Convert.IsDBNull(reader["Summury"])) entity.Summury = null; else entity.Summury = reader["Summury"].ToString();

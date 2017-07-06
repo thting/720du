@@ -165,7 +165,7 @@
                     color = "#e2ff7e";
                 }
                 i++;
-                <li class="slide-items @(item.GetHashCode() == ShopType ? "selected" : "")" style="background:@(color)">@item.ToString()</li>
+                <li onclick="location.href='/Shop/Index/@(StationId)?type=@item.GetHashCode()';" class="slide-items @(item.GetHashCode() == ShopType ? "selected" : "")" style="background:@(color)">@item.ToString()</li>
             }
         </ul>
     </div>

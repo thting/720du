@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" style="font-size: 58.5938px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>优惠券</title>
+    <meta name="description" content="">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script type="text/javascript">
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 100 * (clientWidth / 640) + 'px' }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener('DOMContentLoaded', recalc, false) })(document, window);</script>
+    <script type="text/javascript" src="js/aq_common.js"></script>
+    <script type="text/javascript" src="js/mo2.js"></script>
+    <script id="seajsnode" src="js/sea.js"></script>
+    <script src="js/h5e.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .bjbj {
+            height: 100%;
+            width: 100%;
+            background: url(images/bg/F.png) no-repeat;
+            ;
+            display: block;
+            position: absolute;
+            background-size: 100% 100%;
+            z-index: 999;
+        }
+
+
+        .tab {
+            width: 400px;
+            margin: 30px auto;
+        }
+
+        .tab-title {
+            height: 30px;
+            font-size: 0;
+            background-color: #f5f5f5;
+        }
+
+            .tab-title .item {
+                display: inline-block;
+                width: 80px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                color: #333;
+                font-size: 16px;
+            }
+
+            .tab-title .item-cur {
+                color: #fff;
+                background-color: #80b600;
+            }
+
+        .tab-cont {
+            position: relative;
+            background-color: #80b600;
+            width: 400px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tab-cont__wrap {
+            position: absolute;
+        }
+
+        .tab-cont .item {
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .biaoti {
+            font-size: 19px;
+            line-height: 100px;
+            background: url(images/btn/222.png) center;
+            top: 0;
+            position: relative;
+            width: 100%;
+            height: 90px;
+            /* background: red; */
+            left: 0;
+            text-align: center;
+            background-size: 100%;
+        }
+
+        #tabNav ul {
+            position: absolute;
+            right: 20px;
+            top: 80px;
+            width: 40px;
+            text-align: center;
+        }
+
+            #tabNav ul li {
+                position: relative;
+                width: 40px;
+                height: 70px;
+                float: left;
+                writing-mode: tb-rl;
+                line-height: 37px;
+                margin: 10px 0px;
+                background: #a3dcf7;
+            }
+
+        .biaogeyouce {
+            position: relative;
+            float: left;
+            width: 65%;
+        }
+
+            .biaogeyouce tr td {
+                line-height: 12px;
+                font-size: 12px;
+            }
+
+        #tab {
+            width: 77%;
+            margin: 0 auto;
+        }
+
+        #tanContainer {
+            background: url(images/layer/layer_s1_bg.png) repeat-y;
+            background-size: 100%;
+        }
+
+        #tab ul li img {
+            position: relative;
+            float: left;
+            display: inline-block;
+        }
+
+        .xiangqing tr td {
+            line-height: 12px;
+            font-size: 12px;
+        }
+
+        .xiangqing tr:first-child {
+            border-bottom: 1px solid grey;
+        }
+
+        .smgezi {
+            margin-bottom: 10px;
+            clear: both;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        #youhuibao {
+            position: fixed;
+            width: 100px;
+            height: 167px;
+            right: 10px;
+            bottom: 10px;
+            background: url(images/btn/youhuibao.png) no-repeat;
+            display: none;
+            z-index: 999;
+        }
+
+        #xxx {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 100px;
+            height: 169px;
+        }
+    </style>
+</head>
+<body allowtransparency="true">
+
+    <script type="text/javascript" src="js/layer.js"></script>
+    <div class="bjbj" id="bjbj"></div>
+    <div id="youhuibao"></div>
+    <img src="images/btn/youhuibao.png" id="xxx" style="display:none;z-index:999">
+
+    <div id="main">
+        <div id="bg" style="opacity: 1;"></div>
+        <div id="three">
+        </div>
+    </div>
+    <audio id="bgm" src="http://appmusic.qq.com/music/641012099/bgm.mp3" loop="" preload=""></audio>
+
+    .btn_close{
+    background:none ! important;
+    color:red;
+    font-size:22px;
+    }
+
+
+    <div id="mod_player" class="mod_player"></div>
+
+    <div class="layer_h" id="layer_qinghu">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/1" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layer_s1" id="layer_longsheng">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/3" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_baishilong">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/7" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_zjk">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/13" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="layer_s1" id="layer_shenzhenbeizhan">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/6" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="layer_s1" id="layer_fuming">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/14" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_shangmeilin">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/9" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_mingle">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/8" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_longhua">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/2" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_club">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_hongshan">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/5" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_shaoniangong">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/11" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_zhengji">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Collect/Index" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_futiankouan">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/12" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_s1" id="layer_futiankouan1">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/15" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="layer_s1" id="layer_fuming">
+        <div class="box">
+            <a href="javascript:;" class="btn_close">X</a>
+            <div class="content">
+                <iframe src="/Shop/Index/14" class="s100" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>-->
+
+
+
+
+
+
+    <script type="text/javascript" src="js/imagesloaded.js"></script>
+    <script type="text/javascript" src="js/img.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <!-- <script type="text/javascript" src="js/app.video.player.v3.js"></script> -->
+    <script src="js/tvp.player_v2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/anta.js"></script>
+    <!-- <script type="text/javascript" src="js/bootstrap.js" id="jslibNode" arg="{&#39;cpid&#39;:641012099,&#39;appid&#39;:4007203}" cfg="{&#39;toolbar&#39;:false,&#39;track&#39;:true}"></script>
+     -->
+    <script type="text/javascript" src="js/project.js"></script>
+    <script type="text/javascript">
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (isWeiXin()) {
+            $(".btn_buy").attr("href", "#");
+        } else {
+            $(".btn_buy").attr("href", "#");
+        }
+        //function txTrackAction(num){
+        //console.log(num);
+        //}
+    </script>
+
+    <script type="text/javascript" src="js/page_duration.js" id="ad_statistic_kit" arguments="{&#39;cpid&#39;:&#39;641012099&#39;}"></script>
+    <div style="background: rgb(0, 0, 0); opacity: 0.5; z-index: 99; width: 100%; position: absolute; left: 0px; top: 0px; height: 667px; display: none;" id="bgdiv"></div>
+</body>
+</html>

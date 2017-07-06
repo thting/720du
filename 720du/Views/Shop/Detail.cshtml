@@ -1,0 +1,168 @@
+﻿@using du720.Common;
+@using du720.Entity;
+@{
+    Layout = null;
+}
+@model ShopListEntity
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商铺列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link href="~/Content/css/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <style type="text/css">
+        #head-slide {
+            border-bottom: 0;
+        }
+
+        #head-slide {
+            border-bottom: 0;
+        }
+
+        #head-slide {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .native-scroll {
+            overflow: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        .head-slides {
+            position: relative;
+            width: 100%;
+            /* background: #64c1ed; */
+            height: 100%;
+            z-index: 1;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-transition-property: -webkit-transform;
+            -moz-transition-property: -moz-transform;
+            -o-transition-property: -o-transform;
+            -ms-transition-property: -ms-transform;
+            transition-property: transform;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            color: white;
+        }
+
+        .head-slides .slide-items.selected {
+            font-weight: 700;
+        }
+
+        .head-slides .slide-items {
+            font-size: 14px;
+            line-height: 40px;
+        }
+
+
+        .head-slides .slide-items {
+            user-select: none;
+            display: block;
+            width: auto;
+            float: left;
+            position: relative;
+            padding: 0 20px;
+            color: #333;
+            line-height: 44px;
+            font-size: 16px;
+            text-align: center;
+            box-sizing: border-box;
+            transition: all ease .3s;
+            -webkit-flex-shrink: 0;
+            -ms-flex: 0 0 auto;
+            flex-shrink: 0;
+            z-index: 2;
+            padding: 0 10px;
+            background: #64c1ed;
+            margin-right: 10px;
+            font-weight: 700;
+            box-shadow: 1px 2px 3px #322e2e;
+        }
+
+        .withdrawals-panel {
+            border: solid 1px #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 0.8rem 0.6rem;
+            margin-bottom: 0.3rem;
+            overflow: hidden;
+            background: #fadae7;
+        }
+
+        .header-form {
+            position: relative;
+            width: 100%;
+            background: #afe5ff;
+            border-bottom: 1px solid #F1F1F1;
+            height: 79px;
+            text-align: center;
+            line-height: 81px;
+            font-size: 22px;
+            box-shadow: 1px 2px 3px #cbcbcb;
+            color: #4f5051;
+            margin-bottom: 10px;
+        }
+        .ac {
+            border: solid 1px #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 0.8rem 0.6rem;
+            margin-bottom: 0.3rem;
+            overflow: hidden;
+            background: #eee;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="padding: 40px;">
+        <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}'>
+            <ul class="am-slides">
+                <li>
+                    <img src="/upload/@Model.ShopImageUrl">
+                </li>
+            </ul>
+        </div>
+        <div class="my-search-title-panel am-text-sm am-margin-bottom-sm" style="text-align: center;">
+            <p class="biaoti">@Model.ShopName	</p>
+            <p style="margin: 0;">No.@Model.ShopNo	</p>
+            <p style="margin: 0;">@Model.Address</p>
+            <p style="border-bottom:1px solid grey">@Model.Summury</p>
+            <a href="javascript:exchange();"><img src="/content/images/youhui.png"></a>
+        </div>
+    </div>
+    <script src="~/Content/js/Lib/jquery/1.8.0/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/Module/Common.js" type="text/javascript"></script>
+    <script src="~/Content/js/Lib/Layer/layer.m.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function exchange() {
+            layer.open({
+                content: '确定要兑换吗？'
+                , btn: ['确定', '取消']
+                , yes: function (index) {
+                    location.href = "/Shop/Coupon/@Model.Id";
+                    layer.close(index);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

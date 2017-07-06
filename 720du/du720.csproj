@@ -917,6 +917,7 @@
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Collect\Index.cshtml" />
     <Content Include="Views\Shop\Coupon.cshtml" />
+    <None Include="Properties\PublishProfiles\du720.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

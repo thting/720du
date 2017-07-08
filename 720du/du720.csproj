@@ -862,6 +862,8 @@
     <Content Include="images\stop\鏂板缓鏂囦欢澶_%283%29\ft1.png" />
     <Content Include="images\stop\鏂板缓鏂囦欢澶_%283%29\ft2.png" />
     <Content Include="images\vr_close.png" />
+    <Content Include="js\need\layer.css" />
+    <Content Include="test.html" />
     <Content Include="index.html" />
     <Content Include="js\anta.js" />
     <Content Include="js\app.video.player.v3.js" />

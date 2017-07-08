@@ -8,13 +8,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/demo.css">
-    <link href="js/need/layer.css" rel="stylesheet" />
     <script type="text/javascript">
         (function (doc, win) { var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 100 * (clientWidth / 640) + 'px' }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener('DOMContentLoaded', recalc, false) })(document, window);</script>
-    <script type="text/javascript" src="js/aq_common.js"></script>
-    <script type="text/javascript" src="js/mo2.js"></script>
-    <script id="seajsnode" src="js/sea.js"></script>
-    <script src="js/h5e.js" type="text/javascript" charset="utf-8"></script>
+
     <style>
         .bjbj {
             height: 100%;
@@ -177,7 +173,7 @@
 <body allowtransparency="true">
     <div class="bjbj" id="bjbj"></div>
     <div id="youhuibao"></div>
-    <img src="images/btn/youhuibao.png" id="xxx" style="display:none;z-index:999">
+    <img src="images/btn/youhuibao.png" id="xxx" style="display:;z-index:999">
 
     <div id="main">
         <div id="bg" style="opacity: 1;"></div>
@@ -331,15 +327,7 @@
         </div>
     </div>-->
 
-    <script type="text/javascript" src="js/imagesloaded.js"></script>
-    <script type="text/javascript" src="js/img.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <!-- <script type="text/javascript" src="js/app.video.player.v3.js"></script> -->
-    <script src="js/tvp.player_v2.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/anta.js"></script>
-    <!-- <script type="text/javascript" src="js/bootstrap.js" id="jslibNode" arg="{&#39;cpid&#39;:641012099,&#39;appid&#39;:4007203}" cfg="{&#39;toolbar&#39;:false,&#39;track&#39;:true}"></script>
-     -->
-    <script type="text/javascript" src="js/project.js"></script>
     <script src="js/layer.js"></script>
     <script type="text/javascript">
         function isWeiXin() {
@@ -360,13 +348,11 @@
         //}
 
         $(function () {
-            setTimeout(function () {
-                $("#xxx").click(function () {
-                    layer.open({
-                        content: '敬请期待', btn: '关闭'
-                    });
+            $("#xxx").click(function () {
+                layer.open({
+                    content: '敬请期待', btn: '关闭'
                 });
-            }, 5000);
+            });
         });
     </script>
 

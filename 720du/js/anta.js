@@ -1140,7 +1140,8 @@
 							JT.fromTo("#"+Dsobj+" .box", 1, {
 								height: "0rem"
 							}, {
-								height: "7.11rem",
+							    //height: "7.11rem",
+							    height: ($(window).height() * 0.75) + "px",
 								ease: JT.Quad.Out,
 								onEnd:function(){
 									$('.btn_close').show();
@@ -1163,7 +1164,8 @@
 							JT.fromTo("#"+Dsobj+" .box", 1, {
 								height: "0rem"
 							}, {
-								height: "5.19rem",
+							    //height: "7.19rem",
+							    height: ($(window).height() * 0.75) + "px",
 								ease: JT.Quad.Out,
 								onEnd:function(){
 									$('.btn_close').show();

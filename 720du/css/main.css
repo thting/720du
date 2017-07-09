@@ -134,7 +134,7 @@ body {
 .layer_s1 .box .content{  
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-size: 100% 100%;}
 .layer_s1 .box .content .txt{     width: 100%;
     /* height: 5rem; */

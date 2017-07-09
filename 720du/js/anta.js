@@ -749,7 +749,7 @@
 					x: 1961,
 					y: 300,
 					dot: dots1,
-					w: 230,
+					w: 194,
 					h: 72,
 					label: "images/btn/btn_futiankouan1.png"
 				}, {
@@ -758,7 +758,7 @@
 					x: 2177,
 					y: 670,
 					dot: dots1,
-					w: 230,
+					w: 194,
 					h: 72,
 					label: "images/btn/btn_zhengji.png"
 				}, {
@@ -767,9 +767,29 @@
 					x: 1961,
 					y: 500,
 					dot: dots1,
-					w: 230,
+					w: 194,
 					h: 72,
-					label: "images/btn/btn_fuming.png"	
+					label: "images/btn/btn_zhengji.png"	
+					}, {
+					name: "layer_lianhuashan",
+					animateType: "3",
+					x: 1250,
+					y: 260,
+					dot: dots1,
+					w: 194,
+					h: 72,
+					label: "images/btn/btn_lianhuashan.png"	
+					
+				}, {
+					name: "layer_shangtang",
+					animateType: "2",
+					x:350,
+
+					y: 754,
+					dot: dots1,
+					w: 194,
+					h: 72,
+					label: "images/btn/shangtang.png"
 					
 				}],
 					panoDots = new C3D.Sprite;
@@ -1164,7 +1184,7 @@
 							JT.fromTo("#"+Dsobj+" .box", 1, {
 								height: "0rem"
 							}, {
-							    //height: "7.19rem",
+							    //height: "5.19rem",
 							    height: ($(window).height() * 0.75) + "px",
 								ease: JT.Quad.Out,
 								onEnd:function(){
@@ -1249,6 +1269,20 @@
 			$('.music').removeClass("pause");
 		}
 	});
+	
+	
+	$('#xxx').click(function(){
+
+        $("#layer_xxx").show();
+		
+
+/* if(){
+	        $("#layer_xxx").show();
+	xx_close
+	
+} */
+	});	
+	
 	
 	$('.music').click(function(){
 		if($('.music').attr("class")=="music"){

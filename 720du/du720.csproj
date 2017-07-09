@@ -712,6 +712,7 @@
     <Content Include="images\bg - 40\12.png" />
     <Content Include="images\bg - 40\13.png" />
     <Content Include="images\bg - 40\14.png" />
+    <Content Include="images\bg - 40\15.png" />
     <Content Include="images\bg - 40\16.png" />
     <Content Include="images\bg - 40\17.png" />
     <Content Include="images\bg - 40\18.png" />
@@ -767,6 +768,7 @@
     <Content Include="images\bg\7.png" />
     <Content Include="images\bg\8.png" />
     <Content Include="images\bg\9.png" />
+    <Content Include="images\bg\F.gif" />
     <Content Include="images\bg\F.png" />
     <Content Include="images\btn\222.png" />
     <Content Include="images\btn\btn_aminate_icon.png" />

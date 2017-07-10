@@ -830,8 +830,13 @@
 							}]
 						});
 					i.position(Math.sin(M) * Y, .9 * (g.y - o.h / 2), Math.cos(M) * Y).rotation(0, Q + 180 - 5, 0).updateT(), 
-					i.on("touchend", function() {
-						Dialog.showDiv(g.name,g.animateType);
+					i.on("touchend", function () {
+					    if (g.name == "layer_club") {
+					        window.location.href = "http://wechat.mtrsz.com.cn/m/userbind";
+					    }
+					    else {
+					        Dialog.showDiv(g.name, g.animateType);
+					    }
 					}), 
 					i.r0 = Q, 
 					i.w0 = g.w, 

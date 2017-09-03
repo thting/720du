@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="FullShot" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="FullShot">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="stationId" type="xs:int" minOccurs="0" />
+                <xs:element name="name" type="xs:string" minOccurs="0" />
+                <xs:element name="imgs" type="xs:string" minOccurs="0" />
+                <xs:element name="img" type="xs:string" minOccurs="0" />
+                <xs:element name="isPlane" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <FullShot>
+    <stationId>1</stationId>
+    <name>p1</name>
+    <imgs>images/fullshot/1/p_s.png</imgs>
+    <img>images/fullshot/1/p.jpg</img>
+    <isPlane>1</isPlane>
+  </FullShot>
+  <FullShot>
+    <stationId>1</stationId>
+    <name>p2</name>
+    <imgs>images/fullshot/1/f1_s.png</imgs>
+    <img>images/fullshot/1/f1.jpg</img>
+    <isPlane>0</isPlane>
+  </FullShot>
+  <FullShot>
+    <stationId>1</stationId>
+    <name>p3</name>
+    <imgs>images/fullshot/1/f2_s.png</imgs>
+    <img>images/fullshot/1/f2.jpg</img>
+    <isPlane>0</isPlane>
+  </FullShot>
+  <FullShot>
+    <stationId>1</stationId>
+    <name>p4</name>
+    <imgs>images/fullshot/1/f3_s.png</imgs>
+    <img>images/fullshot/1/f3.jpg</img>
+    <isPlane>0</isPlane>
+  </FullShot>
+  <FullShot>
+    <stationId>1</stationId>
+    <name>p5</name>
+    <imgs>images/fullshot/1/f4_s.png</imgs>
+    <img>images/fullshot/1/f4.jpg</img>
+    <isPlane>0</isPlane>
+  </FullShot>
+</NewDataSet>

@@ -1,4 +1,5 @@
 ﻿using du720.BLL;
+using du720.Common;
 using du720.Entity;
 using du720.Filter;
 using System;
@@ -54,9 +55,17 @@ namespace du720.Controllers
                 return Json(hr);
             }
 
+            int stationId = Convert.ToInt32(form["ddlStationId"]);
             int collectType = Convert.ToInt32(form["ddlType"]);
 
+            if (!Enum.IsDefined(typeof(Enums.eStation), stationId))
+            {
+                hr.Message = "站点不存在。";
+                return Json(hr);
+            }
+
             CollectInfoEntity entityCollect = new CollectInfoEntity();
+            entityCollect.StationId = stationId;
             entityCollect.CollectType = collectType;
             entityCollect.UserName = form["txtUserName"].Trim();
             entityCollect.Phone = form["txtPhone"].Trim();

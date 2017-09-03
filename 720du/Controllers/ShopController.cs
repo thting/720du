@@ -12,14 +12,14 @@ namespace du720.Controllers
 {
     public class ShopController : Controller
     {
-        //
-        // GET: /Shop/
-        public ActionResult Index(int id = 0, int type = 0)
-        {
-            ViewBag.StationId = id;
-            ViewBag.ShopType = type;
-            return View();
-        }
+        ////
+        //// GET: /Shop/
+        //public ActionResult Index(int id = 0, int type = 0)
+        //{
+        //    ViewBag.StationId = id;
+        //    ViewBag.ShopType = type;
+        //    return View();
+        //}
 
         [HttpPost, AjaxFilter]
         public ActionResult GetList(int page, int stationId, int shopType)

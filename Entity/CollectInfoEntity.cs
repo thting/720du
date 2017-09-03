@@ -9,6 +9,7 @@ namespace du720.Entity
     {
         #region Private Parameters
         private int _Id;
+        private int _StationId;
         private int _CollectType;
         private string _UserName;
         private string _Phone;
@@ -22,6 +23,12 @@ namespace du720.Entity
         {
             get { return this._Id; }
             set { this._Id = value; }
+        }
+
+        public int StationId
+        {
+            get { return this._StationId; }
+            set { this._StationId = value; }
         }
 
         /// <summary>

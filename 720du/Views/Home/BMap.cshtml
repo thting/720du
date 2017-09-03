@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>附近站点</title>
+    <link href="~/Content/css/other.css" rel="stylesheet" />
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+<body>
+    <div id="allmap"></div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=307b9d6165bb73b83a6d653e11a9ce33"></script>
+    <script src="~/Content/js/Lib/jquery/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/js/Module/Common.js"></script>
+    <script>
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        layerHelp.loading2(true);
+
+        //获取当前位置
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                layerHelp.loading2Close();
+                map.enableScrollWheelZoom();
+                var top_left_navigation = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_SMALL });
+                map.addControl(top_left_navigation);
+
+                //var mPoint = new BMap.Point(114.012255, 22.65759);
+                map.centerAndZoom(r.point, 15);
+                //console.log(mPoint.lat, mPoint.lng);
+                //console.log(r.point.lat, r.point.lng);
+                var local = new BMap.LocalSearch(map, { renderOptions: { map: map, autoViewport: false } });
+                local.searchNearby('地铁站', r.point, 1000);
+            }
+            else {
+                alert('failed' + this.getStatus());
+            }
+        }, { enableHighAccuracy: true });
+
+        ////获取所有商场信息
+        //function GetShopInfo() {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Home/GetShopPartInfo",
+        //        data: {},
+        //        dataType: "json",
+        //        beforeSend: function () {
+
+        //        },
+        //        success: function (result) {
+        //            if (result.code == 200) {
+        //                var data = result.data;
+        //                var id = $("#hidId").val();
+        //                for (var i = 0; i < data.length; i++) {
+        //                    var isShow = false;
+        //                    if (data[i].Id == id) {
+        //                        isShow = true;
+        //                    }
+        //                    AddShopGroupPosition(data[i].Lng, data[i].Lat, "/Content/images/zdlmap-img/zdl-map3-mini.png", 30, 42, isShow, data[i].Id, data[i].ShopName);
+        //                }
+        //            }
+        //            else {
+        //                layermsg(result.message);
+        //            }
+        //        },
+        //        complete: function () {
+
+        //        }
+        //    });
+        //}
+
+        //$(function () {
+
+        //});
+
+        //function AddShopGroupPosition(lng, lat, img, imgH, imgW, IsShow, shopId, shopName) {
+        //    // 百度地图API功能
+        //    var sContent = "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a style='text-decoration:none;color:#383838;' href='/WorthComing/ShopDetial/" + shopId + "'>" + shopName + "</a></h4>";
+        //    var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+        //    var pt = new BMap.Point(lng, lat);
+        //    var myIcon = new BMap.Icon(img, new BMap.Size(imgH, imgW));
+        //    var marker = new BMap.Marker(pt, { icon: myIcon });  // 创建标注
+        //    map.addOverlay(marker);// 将标注添加到地图中
+        //    if (IsShow) {
+        //        map.openInfoWindow(infoWindow, pt); //开启信息窗口
+        //    }
+        //    //点击事件
+        //    marker.addEventListener("click", function () {
+        //        this.openInfoWindow(infoWindow);
+        //    });
+        //}
+
+
+        //// 定义一个控件类,即function
+        //function ZoomControl() {
+        //    // 默认停靠位置和偏移量
+        //    this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+        //    this.defaultOffset = new BMap.Size(10, 10);
+        //}
+
+        //// 通过JavaScript的prototype属性继承于BMap.Control
+        //ZoomControl.prototype = new BMap.Control();
+        //// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+        //// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+        //ZoomControl.prototype.initialize = function (map) {
+        //    // 创建一个DOM元素
+        //    var div = document.createElement("div");
+        //    // 添加文字说明
+        //    div.appendChild(document.createTextNode("返回"));
+        //    // 设置样式
+        //    div.style.cursor = "pointer";
+        //    div.style.border = "0px solid gray";
+        //    // 绑定事件,点击一次放大两级
+        //    div.onclick = function (e) {
+        //        window.history.back();
+        //    }
+        //    // 添加DOM元素到地图中
+        //    map.getContainer().appendChild(div);
+        //    // 将DOM元素返回
+        //    return div;
+        //}
+        //// 创建控件
+        //var myZoomCtrl = new ZoomControl();
+        //// 添加到地图当中
+        //map.addControl(myZoomCtrl);
+
+
+        ////添加定位 自定义中心图标
+        //var geolocationControl = new BMap.GeolocationControl({
+        //    showAddressBar: false,
+        //    locationIcon: new BMap.Icon("/Content/images/zdlmap-img/zdl-map4-mini.png", new BMap.Size(16, 34))
+        //});
+        //map.addControl(geolocationControl);
+    </script>
+</body>
+</html>

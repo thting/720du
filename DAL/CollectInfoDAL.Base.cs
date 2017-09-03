@@ -12,11 +12,11 @@ namespace du720.DAL
     {
         #region ConstVariables
         private const string C_TABLE_NAME = "CollectInfo";
-        private const string C_SP_COLLECTINFO_FIELDS = "[Id],[CollectType],[UserName],[Phone],[Reason],[AddTime]";
-        private const string C_SP_COLLECTINFO_INSERT = "INSERT INTO [CollectInfo]([CollectType],[UserName],[Phone],[Reason],[AddTime]) VALUES(@CollectType,@UserName,@Phone,@Reason,@AddTime);SET @Id = SCOPE_IDENTITY();";
-        private const string C_SP_COLLECTINFO_UPDATE = "UPDATE [CollectInfo] SET [CollectType]=@CollectType,[UserName]=@UserName,[Phone]=@Phone,[Reason]=@Reason,[AddTime]=@AddTime WHERE [Id] = @Id";
+        private const string C_SP_COLLECTINFO_FIELDS = "[Id],[StationId],[CollectType],[UserName],[Phone],[Reason],[AddTime]";
+        private const string C_SP_COLLECTINFO_INSERT = "INSERT INTO [CollectInfo]([StationId],[CollectType],[UserName],[Phone],[Reason],[AddTime]) VALUES(@StationId,@CollectType,@UserName,@Phone,@Reason,@AddTime);SET @Id = SCOPE_IDENTITY();";
+        private const string C_SP_COLLECTINFO_UPDATE = "UPDATE [CollectInfo] SET [StationId]=@StationId,[CollectType]=@CollectType,[UserName]=@UserName,[Phone]=@Phone,[Reason]=@Reason,[AddTime]=@AddTime WHERE [Id] = @Id";
         private const string C_SP_COLLECTINFO_DELETE = "DELETE [CollectInfo] WHERE [Id] = @Id";
-        private const string C_SP_COLLECTINFO_GET = "SELECT [Id],[CollectType],[UserName],[Phone],[Reason],[AddTime] FROM [CollectInfo] WHERE [Id] = @Id";
+        private const string C_SP_COLLECTINFO_GET = "SELECT [Id],[StationId],[CollectType],[UserName],[Phone],[Reason],[AddTime] FROM [CollectInfo] WHERE [Id] = @Id";
         #endregion
 
         private static string ConnectionString
@@ -42,6 +42,7 @@ namespace du720.DAL
             List<SqlParameter> commandParms = new List<SqlParameter>();
             SqlParameter id_Id = SqlHelper.CreateParam("@Id", SqlDbType.Int, 0, ParameterDirection.Output, null);
             commandParms.Add(id_Id);
+            commandParms.Add(SqlHelper.CreateParam("@StationId", SqlDbType.Int, 0, ParameterDirection.Input, entity.StationId));
             commandParms.Add(SqlHelper.CreateParam("@CollectType", SqlDbType.Int, 0, ParameterDirection.Input, entity.CollectType));
             commandParms.Add(SqlHelper.CreateParam("@UserName", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.UserName));
             commandParms.Add(SqlHelper.CreateParam("@Phone", SqlDbType.VarChar, 11, ParameterDirection.Input, entity.Phone));
@@ -83,6 +84,7 @@ namespace du720.DAL
             List<SqlParameter> commandParms = new List<SqlParameter>();
 
             commandParms.Add(SqlHelper.CreateParam("@Id", SqlDbType.Int, 0, ParameterDirection.Input, entity.Id));
+            commandParms.Add(SqlHelper.CreateParam("@StationId", SqlDbType.Int, 0, ParameterDirection.Input, entity.StationId));
             commandParms.Add(SqlHelper.CreateParam("@CollectType", SqlDbType.Int, 0, ParameterDirection.Input, entity.CollectType));
             commandParms.Add(SqlHelper.CreateParam("@UserName", SqlDbType.NVarChar, 50, ParameterDirection.Input, entity.UserName));
             commandParms.Add(SqlHelper.CreateParam("@Phone", SqlDbType.VarChar, 11, ParameterDirection.Input, entity.Phone));
@@ -195,6 +197,7 @@ namespace du720.DAL
         {
             Entity.CollectInfoEntity entity = new Entity.CollectInfoEntity();
             entity.Id = Convert.ToInt32(row["Id"]);
+            entity.StationId = Convert.ToInt32(row["StationId"]);
             entity.CollectType = Convert.ToInt32(row["CollectType"]);
             entity.UserName = row["UserName"].ToString();
             entity.Phone = row["Phone"].ToString();
@@ -211,6 +214,7 @@ namespace du720.DAL
         {
             Entity.CollectInfoEntity entity = new Entity.CollectInfoEntity();
             entity.Id = Convert.ToInt32(reader["Id"]);
+            entity.StationId = Convert.ToInt32(reader["StationId"]);
             entity.CollectType = Convert.ToInt32(reader["CollectType"]);
             entity.UserName = reader["UserName"].ToString();
             entity.Phone = reader["Phone"].ToString();

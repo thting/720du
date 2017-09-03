@@ -534,6 +534,16 @@
     <Content Include="Content\images\btn\鏂板缓鏂囦欢澶_btn_zjk.png" />
     <Content Include="Content\images\dianpuxiangqing.jpg" />
     <Content Include="Content\images\erweima.png" />
+    <Content Include="Content\images\fullshot\1\f1.jpg" />
+    <Content Include="Content\images\fullshot\1\f1_s.png" />
+    <Content Include="Content\images\fullshot\1\f2.jpg" />
+    <Content Include="Content\images\fullshot\1\f2_s.png" />
+    <Content Include="Content\images\fullshot\1\f3.jpg" />
+    <Content Include="Content\images\fullshot\1\f3_s.png" />
+    <Content Include="Content\images\fullshot\1\f4.jpg" />
+    <Content Include="Content\images\fullshot\1\f4_s.png" />
+    <Content Include="Content\images\fullshot\1\p.jpg" />
+    <Content Include="Content\images\fullshot\1\p_s.png" />
     <Content Include="Content\images\imgimg.png" />
     <Content Include="Content\images\into.png" />
     <Content Include="Content\images\layer\4444.png" />
@@ -844,6 +854,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\admin\js\module\" />
     <Folder Include="Content\images\btn\鏂板缓鏂囦欢澶_\" />
+    <Folder Include="Content\images\fullshot\2\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

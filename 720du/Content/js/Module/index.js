@@ -1,9 +1,11 @@
-﻿function nextpage() {
+﻿var page = 1;
+var isLoading = false;
+function nextpage(stationId, shopType) {
     if (isLoading) return false;
     if (page == 1) {
         $("#divList").empty();
     }
-    $(window).off();
+    $("#divList").parent().off("scroll");
     $.ajax({
         type: "post",
         url: "/Shop/GetList",
@@ -15,10 +17,10 @@
         },
         beforeSend: function () {
             isLoading = true;
-            $("#divList").append($('<div class="ac voteloading">加载中...</div>'));
+            layerHelp.loading2(true);
         },
         success: function (data) {
-            $("#divList .voteloading").remove();
+            layerHelp.loading2Close();
             var result = JsonEval(data);
             if (result.StatsCode == 200 && result.Data != null && result.Data.list.length > 0) {
                 createHTML(result.Data.list);
@@ -27,9 +29,9 @@
                     $("#divList").append($('<div class="ac">没有更多了</div>'));
                 }
                 else {
-                    $(window).off().on("scroll", function () {
-                        if ($(window).scrollTop() > $("body").height() - $(window).height() - 20) {
-                            nextpage();
+                    $("#divList").parent().off("scroll").on("scroll", function () {
+                        if ($("#divList").parent().scrollTop() > $("#divList").height() - $("#divList").parent().height() - 20) {
+                            nextpage(stationId, shopType);
                         }
                     });
                 }
@@ -50,15 +52,19 @@
 function createHTML(data) {
     var str = "";
     $.each(data, function (i, item) {
-        str += '<section id="r' + item.Id + '" class="flexbox listItem" data-floor="' + item.Replyfloor + '" onclick="quoteReply(' + item.Id + ', ' + item.Replyfloor + ');">';
-        str += '<div id="r' + item.Id + '" class="withdrawals-panel">';
-        str += '    <div class="groupby-img-panle"><a href="/Shop/Detail/' + item.Id + '"><img src="/upload/' + item.ShopImageUrl + '" class="am-img-responsive" /></a></div>';
-        str += '    <div class="groupby-info-panle">';
-        str += '        <h3><a href="/Shop/Detail/' + item.Id + '">' + item.ShopName + '</a></h3>';
-        str += '        <p>.No.' + item.ShopNo + '</p>';
-        str += '        <p style="border-bottom: 1px solid #ababaa;">' + item.Address + '</p>';
+        str += '<a id="r' + item.Id + '" class="map-store-item listItem">';
+        str += '    <div class="lef">';
+        str += '        <img src="' + item.ShopImageUrl + '">';
+        str += '        <div class="map-store-list-btn">领取优惠券</div>';
         str += '    </div>';
-        str += '</div>';
+        str += '    <div class="rit">';
+        str += '        <ul class="map-store-ulinfo">';
+        str += '            <li>' + item.ShopName + '</li>';
+        str += '            <li>No.' + item.ShopNo + '</li>';
+        str += '            <li>Add:' + item.Address + '</li>';
+        str += '        </ul>';
+        str += '    </div>';
+        str += '</a>';
     });
 
     $("#divList").append(str);

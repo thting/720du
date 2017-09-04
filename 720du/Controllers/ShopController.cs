@@ -47,7 +47,7 @@ namespace du720.Controllers
                 dict.Add("Id", item.Id);
                 dict.Add("StationId", item.StationId);
                 dict.Add("ShopType", item.ShopType);
-                dict.Add("ShopImageUrl", item.ShopImageUrl);
+                dict.Add("ShopImageUrl", string.IsNullOrWhiteSpace(item.ShopImageUrl) ? "img/st_icon.jpg" : "/upload/" + item.ShopImageUrl);
                 dict.Add("ShopName", item.ShopName);
                 dict.Add("Title", item.Title);
                 dict.Add("Summury", item.Summury);

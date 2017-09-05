@@ -1,0 +1,181 @@
+﻿<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="copyright" content="" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>全景</title>
+    <link rel="stylesheet" type="text/css" href="css/vr360.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewdemo.css" />
+</head>
+<body>
+
+    <div id="js-image-view" class="image-view" style="display:none;">
+        <div class="image-content">
+            <img id="js-image-dom" />
+        </div>
+    </div>
+    <div id="js-vr-dom" class="demo-photo vr360d"></div>
+
+    <div class="photo-wrapper">
+        <div id="js-photo-list" class="photo-list">
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/hammer.min.js"></script>
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/tween.min.js"></script>
+    <script type="text/javascript" src="js/DeviceOrientationControls.js"></script>
+    <script type="text/javascript" src="js/jquery.vvrrmin.js"></script>
+    <script type="text/javascript">
+        
+        var imglist = [
+            {
+                plane:true,     //普通的图  平面图
+                name:"全景图",
+                simg:"img2/p-s.png",
+                img: "img2/bsl.jpg",
+            },
+            {
+                plane: false,   //全景图
+                name: "图片1",
+                simg: "img2/1-s.png",
+                img: "img2/1.jpg",
+            },
+            {
+                plane: false,
+                name: "图片2",
+                simg: "img2/2-s.png",
+                img: "img2/2.jpg",
+            },
+            {
+                plane: false,
+                name: "图片333",
+                simg: "img2/3-s.png",
+                img: "img2/3.jpg",
+            },
+            {
+                plane: false,
+                name: "图片4",
+                simg: "img2/4-s.png",
+                img: "img2/4.jpg",
+            },
+        ]
+
+
+        $(document).ready(function () {
+
+            var list_template =
+                '<div id="{{_key}}" class="list-item" >' +
+                    '<img src= "{{simg}}" />' +
+                    '<span>{{name}}</span>' +
+                '</div >';
+
+
+            function renderList() {
+                var html = "";
+                for (var i in imglist) {
+                    var item = imglist[i];
+                    item._key = i;
+                    html += list_template.replace(/\{\{([^}]+)\}\}/g, function (a, b) {
+                        if (item[b] !== undefined) {
+                            return item[b]+""
+                        }
+                        return "";
+                    })
+                }
+                $("#js-photo-list").html(html);
+
+            }
+            renderList();
+
+            var $image_view = $("#js-image-view");
+            var $vr_dom = $("#js-vr-dom");
+            var $img_dom = $("#js-image-dom");
+
+            function showPlane(img) {
+                plugin.isrendering = false;
+                $vr_dom.hide();
+                $image_view.show();
+                $img_dom.attr("src", img);
+            }
+
+            function showFullshot(img) {
+                plugin.isrendering = true
+                $vr_dom.show();
+                $image_view.hide();
+                plugin.loadPhoto(img);
+                $img_dom.attr("src", "");
+            }
+
+            $("#js-photo-list").on("click", "div.list-item", function (e) {
+                var $this = $(this);
+                if ($this.hasClass("active")) {
+                    return;
+                }
+                $this.addClass("active").siblings(".active").removeClass("active");
+
+                var index = $this.index();
+                var item = imglist[index];
+                if (item) {
+                    if (item.plane) {
+                        showPlane(item.img);
+                    } else {
+                        showFullshot(item.img);
+                    }
+                }
+            });
+
+            $("#js-image-dom").click(function () {
+                // 使用微信内置的图像预览功能
+                if (window.WeixinJSBridge) {
+                    WeixinJSBridge.invoke('imagePreview', {
+                        'current': this.src,
+                        'urls': [this.src]
+                    });
+                }
+            })
+
+            $("#js-vr-dom")[0].addEventListener("touchstart", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            })
+            $("#js-vr-dom")[0].addEventListener("touchmove", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            })
+
+            var fdom = $('.demo-photo').vr360d()[0];
+            plugin = fdom.plugin;
+            plugin.automove = false;
+            plugin.allowgrav = true;
+            
+
+
+            for (var i = 0; i < imglist.length; i++) {
+                if (!imglist[i].plane) {
+                    showFullshot(imglist[i].img);
+                    $("#js-photo-list>div").eq(i).addClass("active");
+                    break;
+                }
+            }
+
+            //var image = "vvv.jpg";
+            //location.search.replace(/n=([^&]+)/, function (a, b) {
+            //    image = b;
+            //});
+            
+
+        });
+
+    </script>
+
+</body>
+</html>

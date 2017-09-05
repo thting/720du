@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>演示</title>
+    <link rel="stylesheet" href="css/style.css" />
+    
+</head>
+<body>
+    <div class="main">
+        <div id="js-main-map" class="main-map">
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/zepto.min.1.1.6.js"></script>
+    <script src="js/css3d.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+
+        var js_main_map = $("#js-main-map");
+        var stage = new C3D.Stage();
+        stage.material({
+            color:"#cccccc"
+        })
+        js_main_map.append(stage.el)
+        function resize() {
+            stage.size(window.innerWidth, window.innerHeight).update();
+        }
+        resize();
+        
+        function random(max, haf) {
+            if (haf) {
+                return Math.floor(Math.random() * max - max/2);
+            }
+            return Math.floor(Math.random() * max);
+        }
+
+
+
+        var fov = stage.fov;
+
+
+        var distancgroup = new C3D.Sprite();
+        distancgroup.position(0, 0, -fov).update();
+        distancgroup.el.className = "main-group"
+        stage.addChild(distancgroup);
+        
+        var maingroup = new C3D.Sprite();
+        maingroup.update();
+        distancgroup.addChild(maingroup);
+
+        //var level3 = new C3D.Sprite();
+        //level3.position(0, 0, -1200).update();
+        //maingroup.addChild(level3);
+
+        //var level2 = new C3D.Sprite();
+        //level2.position(0, 0, -600).update();
+        //maingroup.addChild(level2);
+
+        
+
+        var level1 = new C3D.Sprite();
+        level1.position(0, 0, 0).update();
+        maingroup.addChild(level1);
+
+        var p = new C3D.Plane();
+        p.size(2688, 1344).position(0, 0, 0).material({
+            image: "img/m2.jpg"
+        }).update();
+        level1.addChild(p)
+        var level2_bgplane = p;
+
+        var width = 2688, height = 1344;
+
+
+        (function () {
+
+
+            var ptext1 = new C3D.Plane();
+            ptext1.el.innerHTML = '<div class="test-leveldiv" >第一层</div>';
+            ptext1.update();
+            level1.addChild(ptext1);
+
+            //var ptext2 = new C3D.Plane();
+            //ptext2.el.innerHTML = '<div class="test-leveldiv" >第二层</div>';
+            //ptext2.z = 10;
+            //ptext2.update();
+            //level2.addChild(ptext2);
+
+            //var ptext3 = new C3D.Plane();
+            //ptext3.el.innerHTML = '<div class="test-leveldiv" >第三层</div>';
+            //ptext3.update();
+            //level3.addChild(ptext3);
+
+
+            //for (var i = 0; i < 30; i++) {
+            //    var p = new C3D.Plane();
+            //    var pd = '<div class="test-textdiv" >' + "第一层的随机标签" + i + '</div>';
+            //    p.el.innerHTML = pd;
+            //    p.position(random(800, 1), random(800, 1), random(200,1)).rotation(0, 0, 0).material({
+            //        color: C3D.getRandomColor()
+            //    }).update();
+            //    level1.addChild(p)
+            //}
+
+            //for (var i = 0; i < 30; i++) {
+            //    var p = new C3D.Plane();
+            //    var pd = '<div class="test-textdiv" >' + "第二层的随机标签" + i + '</div>';
+            //    p.el.innerHTML = pd;
+            //    p.position(random(800, 1), random(800, 1), random(200, 1)+100).rotation(0, 0, 0).material({
+            //        color: C3D.getRandomColor()
+            //    }).update();
+            //    level2.addChild(p)
+            //}
+            
+
+            //for (var i = 0; i < 30; i++) {
+            //    var p = new C3D.Plane();
+            //    var pd = '<div class="test-textdiv" >' + "第三层的随机标签" + i + '</div>';
+            //    p.el.innerHTML = pd;
+            //    p.position(random(1600, 1), random(1600, 1), random(200, 1)).rotation(0, 0, 0).material({
+            //        color: C3D.getRandomColor()
+            //    }).update();
+            //    level3.addChild(p)
+            //}
+
+
+
+
+            //for (var i = 0; i < 200; i++) {
+            //    var c = new C3D.Box();
+            //    c.size(20).position(random(600,1), random(600,1), random(200,1)).rotation(0, 0, random(90)).material({
+            //        color: C3D.getRandomColor()
+            //    }).update();
+            //    maingroup.addChild(c);
+            //}
+        })();
+
+
+        var $window = $(window);
+        function checkBorder() {
+            var w = $window.width()/2;
+            var h = $window.height()/2;
+            var haf_width = width >> 1;
+            var haf_height = height >> 1;
+
+            if (maingroup.x + w > haf_width ) {
+                maingroup.x = haf_width - w;
+            }
+            if (maingroup.x - w < -haf_width) {
+                maingroup.x = -haf_width + w;
+            }
+            if (maingroup.y + h > haf_height) {
+                maingroup.y = haf_height - h;
+            }
+            if (maingroup.y - h < -haf_height) {
+                maingroup.y = -haf_height + h;
+            }
+
+
+            console.log(maingroup.x, maingroup.y);
+
+        }
+
+
+        var nowlevel = 0;
+        function levelChange(count) {
+            if (count > 0) {
+                if (nowlevel < 0) {
+                    nowlevel++;
+                    distancgroup.position(0, 0, -fov + nowlevel * 600).updateT();
+                }
+            } else if (count < 0) {
+                if (nowlevel > 0 ) {
+                    nowlevel--;
+                    distancgroup.position(0, 0, -fov + nowlevel * 600).updateT();
+                }
+            }
+
+        }
+
+        $(window).resize(function () {
+            resize();
+        });
+        var touchhammer = new Hammer(js_main_map[0], {});
+        touchhammer.get('pan').set({ direction: Hammer.DIRECTION_ALL, threshold: 0, });
+        touchhammer.get('pinch').set({ enable: true });
+        var panstartx, panstarty;
+        touchhammer.on('panstart', function (ev) {
+            panstartx = 0;
+            panstarty = 0;
+        });
+        touchhammer.on('panmove', function (ev) {
+            maingroup.x += ev.deltaX - panstartx;
+            maingroup.y += ev.deltaY - panstarty;
+            checkBorder()
+            maingroup.updateT();
+            panstartx = ev.deltaX;
+            panstarty = ev.deltaY;
+        });
+        touchhammer.on('pinchend', function (ev) {
+            if (ev.scale > 2) {
+                levelChange(1)
+            } else if (ev.scale < 0.5) {
+                levelChange(-1)
+            }
+        });
+
+        function scrollFunc(e) {
+            e = e || window.event;
+            var theval;
+            if (e.wheelDelta) {//IE/Opera/Chrome
+                theval = e.wheelDelta / 120;
+            } else if (e.detail) {//Firefox
+                theval = -e.detail / 3;
+            }
+            levelChange(theval)
+        }
+        js_main_map[0].onmousewheel = scrollFunc;//IE/Opera/Chrome/Safari
+
+        
+
+        (function () {
+
+            var DEG2RAD = Math.PI / 180;
+            var RAD2DEG = 180 / Math.PI;
+
+            function degToRad(degrees) {
+                return degrees * DEG2RAD;
+            }
+
+            function radToDeg(radians) {
+                return radians * RAD2DEG;
+            }
+
+            var deviceOrientation = null;
+            var sub_deviceOrientation = {
+                alpha:0,
+                beta:0,
+                gamma:0
+            };
+            var screenOrientation = 0;
+
+            var onDeviceOrientationChangeEvent = function ( event ) {
+                if (deviceOrientation!=null){
+                    var beta = event.beta - deviceOrientation.beta;
+                    var alpha   = event.alpha - deviceOrientation.alpha;
+                    var gamma = event.gamma - deviceOrientation.gamma;
+
+                    
+                    if(beta>180){
+                        beta = 360 - beta;
+                    }else if(beta<-180){
+                        beta = 360 + beta;
+                    }
+
+                    beta > 180 ? beta = 360 - beta : (beta < -180 ? beta = 360 + beta : 0);
+                    gamma > 180 ? gamma = 360 - gamma : (gamma < -180 ? gamma = 360 + gamma : 0);
+                    alpha > 180 ? alpha = 360 - alpha : (alpha < -180 ? alpha = 360 + alpha : 0);
+
+
+                    console.log(beta, gamma, alpha);
+
+                    if (Math.abs(beta) > 20) {
+                        beta = 0;
+                    }
+                    if (Math.abs(gamma) > 20) {
+                        gamma = 0;
+                    }
+                    if (Math.abs(alpha) > 20) {
+                        alpha = 0;
+                    }
+
+                    var rd_beta = degToRad(event.beta - beta/2);
+                    var rd_gamma = degToRad(event.gamma - gamma/2);
+                    var rd_alpha = degToRad(event.alpha - alpha/2);
+
+                    var kshu = beta;
+                    var khen = 0;
+
+                    khen += gamma * Math.cos(rd_beta) + alpha * Math.sin(rd_beta) //+ gamma * Math.sin(rd_alpha)// + alpha * Math.sin(rd_beta) + alpha * Math.cos(rd_gamma);
+
+                    if (screenOrientation == 0) {
+                        maingroup.y += kshu * 10;
+                        maingroup.x += khen * 10;
+                    } else if (screenOrientation == 90) {
+                        maingroup.y -= khen * 10;
+                        maingroup.x += kshu * 10;
+                    } else if (screenOrientation == -90) {
+                        maingroup.y += khen * 10;
+                        maingroup.x -= kshu * 10;
+                    }
+                    
+                    //console.log(kshu, khen, Math.cos(rd_beta));
+                    checkBorder();
+                    maingroup.updateT();
+
+                }
+                deviceOrientation = event;
+            };
+            var onScreenOrientationChangeEvent = function () {
+                screenOrientation = window.orientation || 0;
+            };
+
+            onScreenOrientationChangeEvent();
+            window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
+		    window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
+
+        })();
+
+    
+    
+    </script>
+
+</body>
+</html>

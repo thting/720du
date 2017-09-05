@@ -1,0 +1,910 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>4号线沿线生活全景</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="main">
+
+        <div id="js-index-page" class="index-page">
+            <div id="js-index-loading" class="index-loading">
+                <div id="js-loading-train" class="index-load-train"></div>
+                <div id="js-loading-txt" class="index-loading-info">0%</div>
+            </div>
+            <div id="js-index-btns" class="index-btns">
+                <div id="js-index-btn1" class="index-btn" title="友你会">
+                    <img src="img/index_btn1.png" />
+                </div>
+                <div class="index-btns-group">
+                    <div id="js-index-btn2" class="index-btn" title="地铁搭乘指南">
+                        <img src="img/index_btn2.png" />
+                    </div>
+                    <div id="js-index-btn3" class="index-btn" title="4号线吃喝玩乐">
+                        <img src="img/index_btn3.png" />
+                    </div>
+                </div>
+                <div id="js-index-btn4" class="index-btn" title="近期优惠">
+                    <img src="img/index_btn4.png" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 换乘指南页面 -->
+        <div id="js-guide-page" class="guide-page">
+            <!--<img class="mask" src="img/guide.jpg" />-->
+            <img class="guide-bgimg1" src="img/guide_0.png" />
+            <img class="guide-bgimg2" src="img/guide_1.png" />
+            <img class="guide-bgimg3" src="img/guide_2.png" />
+            <div class="guide-copyright">© 2017版权所有 港铁轨道交通（深圳）有限公司</div>
+            <div class="guide-cont">
+                <div class="guide-close">
+                    <img src="img/guide_close.png" />
+                </div>
+                <div id="js-guide-tabs" class="guide-cont-tabs">
+                    <div class="active">
+                        <img class="normal" src="img/guide_btn1.png" />
+                        <img class="active" src="img/guide_btn1_a.png" />
+                        <span>换乘</span>
+                    </div>
+                    <div>
+                        <img class="normal" src="img/guide_btn2.png" />
+                        <img class="active" src="img/guide_btn2_a.png" />
+                        <span>路线</span>
+                    </div>
+                    <div>
+                        <img class="normal" src="img/guide_btn3.png" />
+                        <img class="active" src="img/guide_btn3_a.png" />
+                        <span>始末班车</span>
+                    </div>
+                    <div>
+                        <img class="normal" src="img/guide_btn4.png" />
+                        <img class="active" src="img/guide_btn4_a.png" />
+                        <span>附近站点</span>
+                    </div>
+                </div>
+                <div id="js-guide-slide" class="guide-cont-slide">
+                    <div class="active">
+                        <div class="transfer-search">
+                            <div class="transfer-row">
+                                <label for="js-transfer-start">起始站</label>
+                                <div>
+                                    <input id="js-transfer-start" type="text" placeholder="请输入起始站名称" />
+                                </div>
+                            </div>
+                            <div class="transfer-row">
+                                <label for="js-transfer-end">终点站</label>
+                                <div>
+                                    <input id="js-transfer-end" type="text" placeholder="请输入终点站名称" />
+                                </div>
+                            </div>
+                            <div class="transfer-row">
+                                <div id="js-transfer-search" class="transfer-btn">查询</div>
+                            </div>
+                        </div>
+                        <div id="js-transfer-result" class="transfer-result">
+                            <div>票价：5元</div>
+                            <div>途径站：11站</div>
+                            <div>换乘次数：0次</div>
+                            <div>预计时间：25分钟</div>
+                            <div>路线信息：从【清湖】乘坐4号线往福田口岸方向至【少年宫】</div>
+                        </div>
+                    </div>
+                    <div>
+                        <img class="guide-line-map" src="img/linemap-img.jpg" />
+                    </div>
+                    <div>
+                        始末班车
+                    </div>
+                    <div>
+                        附近站点
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="js-main-map" class="main-map" style="display:none;">
+        </div>
+
+        <div id="js-dialog" class="map-dialog">
+            <div class="map-dlog-cont">
+                <div class="map-dlog-tabs">
+                    <div class="active">地铁商铺</div>
+                    <div>美食餐饮</div>
+                    <div>休闲娱乐</div>
+                    <div>周边景点</div>
+                </div>
+                <div id="js-map-dlog-main" class="map-dlog-slide">
+                    <div class="active">
+                        <div class="map-dlog-hdiv">
+                            <div class="map-dlog-station map-dlog-stntext">龙胜站</div>
+
+                            <div class="map-dlog-topimgbtns" >
+                                <a href="fullshot.html" target="_blank">
+                                    <img id="js-dlog-fullshot" class="map-dlog-flst" src="img/fullshot.png" />
+                                    <span>生活全景</span>
+                                </a>
+                                <div>
+                                    <img id="js-dlog-newmsg" class="map-dlog-nmsg" src="img/new_msg.png" />
+                                    <span>信息征集</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="map-dlog-cdiv">
+
+                            <div class="map-store-list">
+
+                                <a class="map-store-item">
+                                    <div class="lef">
+                                        <img src="img/st_icon.jpg" />
+                                        <div class="map-store-list-btn">领取优惠券</div>
+                                    </div>
+                                    <div class="rit">
+                                        <ul class="map-store-ulinfo">
+                                            <li>BREAKFAST ALL DAY 元气早餐</li>
+                                            <li>No.130117</li>
+                                            <li>Add:龙胜地铁站C出口左侧C03</li>
+                                        </ul>
+                                    </div>
+                                </a>
+
+                                <a class="map-store-item">
+                                    <div class="lef">
+                                        <img src="img/st_icon.jpg" />
+                                        <div class="map-store-list-btn">领取优惠券</div>
+                                    </div>
+                                    <div class="rit">
+                                        <ul class="map-store-ulinfo">
+                                            <li>BREAKFAST ALL DAY 元气早餐</li>
+                                            <li>No.130117</li>
+                                            <li>Add:龙胜地铁站C出口左侧C03</li>
+                                        </ul>
+                                    </div>
+                                </a>
+
+                                <a class="map-store-item">
+                                    <div class="lef">
+                                        <img src="img/st_icon.jpg" />
+                                        <div class="map-store-list-btn">领取优惠券</div>
+                                    </div>
+                                    <div class="rit">
+                                        <ol class="map-store-ulinfo">
+                                            <li>BREAKFAST ALL DAY 元气早餐</li>
+                                            <li>No.130117</li>
+                                            <li>Add:龙胜地铁站C出口左侧C03</li>
+                                        </ol>
+                                    </div>
+                                </a>
+
+                                <a class="map-store-item">
+                                    <div class="lef">
+                                        <img src="img/st_icon.jpg" />
+                                        <div class="map-store-list-btn">领取优惠券</div>
+                                    </div>
+                                    <div class="rit">
+                                        <ul class="map-store-ulinfo">
+                                            <li>BREAKFAST ALL DAY 元气早餐</li>
+                                            <li>No.130117</li>
+                                            <li>Add:龙胜地铁站C出口左侧C03</li>
+                                        </ul>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="map-dlog-hdiv">
+                            <div class="map-dlog-station map-dlog-stntext">龙胜站</div>
+                        </div>
+                        <div class="map-dlog-cdiv">
+                            <img class="zwkt-img" src="img/zwkt.png" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="map-dlog-hdiv">
+                            <div class="map-dlog-station map-dlog-stntext">龙胜站</div>
+                        </div>
+                        <div class="map-dlog-cdiv">
+                            <img class="zwkt-img" src="img/zwkt.png" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="map-dlog-hdiv">
+                            <div class="map-dlog-station map-dlog-stntext">龙胜站</div>
+                        </div>
+                        <div class="map-dlog-cdiv">
+                            <img class="zwkt-img" src="img/zwkt.png" />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!--  店铺信息页面  -->
+        <div id="js-dlog-storeinfo" class="map-dialog">
+            <div class="map-dlog-cont storeinfo">
+                <div class="map-dlog-wrapper">
+                    <img class="dlog-collect-info dlog-detail-info" src="img/sp_info_tit.png" />
+                    <!-- <img class="dlog-storeinfo-img" src="img/store_info2.png" /> -->
+                    <div class="detail-cont">
+                        <div class="detail-imgd" >
+                            <img src="img/st_icon.jpg" />
+                        </div>
+                        <div class="detail-infod">
+                            <p>BREAKFAST ALL DAY 元气早餐</p>
+                            <p>Add:龙胜地铁站C出口左侧C03</p>
+                            <p>No.130117</p>
+                        </div>
+                        <div class="detail-btnd">
+                            <button id="js-detail-get-btn">
+                                <img src="img/st_linqu.png" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 友你会页面 -->
+        <div id="js-dlog-unh" class="map-dialog" >
+            <div class="map-dlog-cont unh-info">
+                <div class="unh-wrapper">
+                    <div class="map-dlog-hdiv">
+                        <div class="map-dlog-station"></div>
+                        <div class="unh-head-links">
+                            <a href="#">积分政策</a>
+                            <a href="http://wechat.mtrsz.com.cn/m/userbind" >登录</a>
+                            <a href="https://www.mtrsz.com.cn/members/user/mobileregister?from=singlemessage&isappinstalled=0" >注册</a>
+                        </div>
+                    </div>
+                    <div class="map-dlog-cdiv">
+                        <img src="img/unh.jpg" style="width:100%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 敬请期待页面 -->
+        <div id="js-dlog-jqqd" class="map-dialog" >
+            <div class="map-dlog-cont auto-size">
+                <div class="jqqd-cont">
+                    <img src="img/zwkt.png" />
+                </div>
+            </div>
+        </div>
+
+        <div id="js-dlog-collect-info" class="map-dialog">
+            <div class="map-dlog-cont collect-info">
+                <div class="map-dlog-wrapper">
+                    <img class="dlog-collect-info" src="img/cellect_info_tit.png" />
+                    <div class="ci-cont">
+                        <form id="js-ci-form" class="ci-form">
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-station">站点</label>
+                                <select id="js-ci-station" name="station">
+                                    <option value="福田口岸">福田口岸</option>
+                                    <option value="福民">福民</option>
+                                    <option value="会展中心">会展中心</option>
+                                    <option value="市民中心">市民中心</option>
+                                    <option value="少年宫">少年宫</option>
+                                    <option value="莲花北">莲花北</option>
+                                    <option value="上梅林">上梅林</option>
+                                    <option value="民乐">民乐</option>
+                                    <option value="白石龙">白石龙</option>
+                                    <option value="深圳北站">深圳北站</option>
+                                    <option value="红山">红山</option>
+                                    <option value="上塘">上塘</option>
+                                    <option value="龙胜">龙胜</option>
+                                    <option value="龙华">龙华</option>
+                                    <option value="清湖">清湖</option>
+                                </select>
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-type">商铺类型</label>
+                                <select id="js-ci-type" name="type">
+                                    <option value="地铁商铺">地铁商铺</option>
+                                    <option value="美食餐饮">美食餐饮</option>
+                                    <option value="休闲娱乐">休闲娱乐</option>
+                                    <option value="周边景点">周边景点</option>
+                                </select>
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-txt">推荐理由</label>
+                                <textarea id="js-ci-txt" name="reason"></textarea>
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-by">推荐人</label>
+                                <input class="ci-text-ipt" id="js-ci-by" type="text" name="people" />
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-phone">联系电话</label>
+                                <input class="ci-text-ipt" id="js-ci-phone" type="text" name="phone" maxlength="11" />
+                            </div>
+                            <div class="ci-ipt-row">
+                                <button class="ci-submit" type="submit" >提交</button>
+                            </div>
+                            <p class="ci-ft-info" >*以上信息一经采用，即可获得精美礼品一份</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/zepto.min.1.1.6.js"></script>
+    <script src="js/css3d.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/preloadjs-0.6.2.min.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+
+
+        //$(function () {
+
+
+        var pics = [
+            { z: 20, n: "p1.png", x: 253, y: 449, w: 227, h: 193 },
+            { z: 0, n: "p2.png", x: 447, y: 431, w: 412, h: 219 },
+            { z: -80, n: "p3.png", x: 552, y: 362, w: 384, h: 296 },
+            { z: 0, n: "p4.png", x: 154, y: 796, w: 90, h: 256 },
+            { z: 0, n: "p5.png", x: 294, y: 798, w: 116, h: 257 },
+            { z: 40, n: "p6.png", x: 602, y: 1049, w: 602, h: 182 },
+            { z: 40, n: "p7.png", x: 525, y: 461, w: 90, h: 147 },
+            { z: -20, n: "p8.png", x: 2112, y: 443, w: 2113, h: 163 },
+            { z: -130, n: "p9.png", x: 921, y: 363, w: 380, h: 287 },
+            //{ z: -20, n: "p10.png", x: 1091, y: 271, w: 1017, h: 45 },
+            { z: -260, n: "p11.png", x: 874, y: 104, w: 391, h: 190 },
+            { z: 20, n: "p12.png", x: 1276, y: 524, w: 522, h: 254 },
+            //{ z: 51, n: "p13.png", x: 920, y: 675, w: 334, h: 60 },
+            { z: -80, n: "p14.png", x: 777, y: 1020, w: 232, h: 134 },
+            { z: 40, n: "p15.png", x: 835, y: 1061, w: 168, h: 162 },
+            { z: -30, n: "p16.png", x: 880, y: 1050, w: 87, h: 208 },
+            { z: -200, n: "p17.png", x: 1520, y: 282, w: 650, h: 240 },
+            { z: -130, n: "p18.png", x: 1070, y: 1036, w: 137, h: 242 },
+            { z: 20, n: "p19.png", x: 1253, y: 1050, w: 456, h: 192 },
+            { z: -180, n: "p20.png", x: 1455, y: 999, w: 373, h: 164 },
+            { z: -100, n: "p21.png", x: 1346, y: 1020, w: 55, h: 138 },
+            { z: -80, n: "p22.png", x: 1555, y: 643, w: 104, h: 121 },
+            { z: -130, n: "p23.png", x: 1437, y: 526, w: 75, h: 132 },
+            { z: -130, n: "p24.png", x: 1500, y: 527, w: 46, h: 129 },
+            { z: -160, n: "p25.png", x: 1773, y: 394, w: 500, h: 366 },
+            { z: 10, n: "p27.png", x: 2271, y: 500, w: 563, h: 495 },
+            { z: -100, n: "p28.png", x: 1895, y: 572, w: 373, h: 165 },
+            //{ z: 1, n: "p29.png", x: 2120, y: 587, w: 350, h: 52 },
+            { z: -30, n: "p30.png", x: 1574, y: 1051, w: 133, h: 236 },
+            { z: 70, n: "p31.png", x: 1828, y: 1050, w: 341, h: 294 },
+            { z: -100, n: "p32.png", x: 1882, y: 1050, w: 138, h: 300 },
+            { z: 150, n: "p33.png", x: 1871, y: 1051, w: 168, h: 155 },
+            { z: 20, n: "p34.png", x: 2001, y: 1051, w: 151, h: 188 },
+            { z: -350, n: "p35.png", x: 2059, y: 871, w: 96, h: 133 },
+            { z: 40, n: "p36.png", x: 2210, y: 564, w: 59, h: 128 },
+            { z: 40, n: "p37.png", x: 2341, y: 572, w: 51, h: 141 },
+            { z: 40, n: "p38.png", x: 2422, y: 572, w: 64, h: 142 },
+            { z: -160, n: "p39.png", x: 2545, y: 396, w: 236, h: 396 },
+            { z: 30, n: "p41.png", x: 2649, y: 498, w: 388, h: 227 },
+            { z: -200, n: "p42.png", x: 2355, y: 1050, w: 428, h: 250 },
+            { z: 1, n: "p43.png", x: 2526, y: 1050, w: 227, h: 190 },
+            { z: -150, n: "p44.png", x: 2690, y: 1015, w: 323, h: 208 },
+            { z: -90, n: "p45.png", x: 2727, y: 1012, w: 256, h: 309 },
+            { z: -160, n: "p46.png", x: 3070, y: 382, w: 445, h: 385 },
+            //{ z: 1, n: "p47.png", x: 3069, y: 332, w: 362, h: 47 },
+            { z: 1, n: "p48.png", x: 2727, y: 498, w: 60, h: 105 },
+            { z: 1, n: "p49.png", x: 3070, y: 448, w: 768, h: 164 },
+            { z: 50, n: "p50.png", x: 2905, y: 516, w: 112, h: 158 },
+            { z: 30, n: "p51.png", x: 3091, y: 497, w: 227, h: 193 },
+            { z: 50, n: "p52.png", x: 2912, y: 668, w: 2571, h: 142 },
+            { z: -50, n: "p53.png", x: 2867, y: 1013, w: 160, h: 228 },
+            { z: 1, n: "p54.png", x: 2942, y: 1050, w: 166, h: 199 },
+            { z: -100, n: "p55.png", x: 3066, y: 1047, w: 137, h: 249 },
+            { z: -200, n: "p56.png", x: 3270, y: 817, w: 455, h: 230 },
+
+        ];
+
+        var preload_imgs = [
+            'pics/ploc.png',
+            'img/line4.png',
+        ]
+        for (var i in pics) {
+            preload_imgs.push("pics/" + pics[i].n);
+        }
+
+        var js_loading_train = $("#js-loading-train");
+        var js_loading_txt = $("#js-loading-txt");
+        var queue = new createjs.LoadQueue(true);
+        queue.on("progress", function (pro) {
+            var perloaded = Math.floor(pro.loaded * 100) + "%";
+            js_loading_train.css("left", perloaded);
+            js_loading_txt.text(perloaded);
+        }, this);
+        queue.on("complete", function () {
+            $("#js-index-loading").hide();
+            $("#js-index-btns").show();
+            setTimeout(function () {
+                $("#js-index-btns").css({ opacity: 1, margin: 0 });
+            }, 100);
+
+            initC3dScene();
+        }, this);
+
+
+        var js_main_map = $("#js-main-map");
+        function initC3dScene() {
+
+            var stage = new C3D.Stage();
+            stage.material({
+                color: "#141821"
+            })
+            js_main_map.append(stage.el)
+            function resize() {
+                stage.size(window.innerWidth, window.innerHeight).update();
+            }
+            resize();
+            var fov = stage.fov;
+
+            var distancgroup = new C3D.Sprite();
+            distancgroup.position(0, 0, -fov).update();
+            distancgroup.el.className = "main-group"
+            stage.addChild(distancgroup);
+
+            var maingroup = new C3D.Sprite();
+            maingroup.scale(0.6).update();
+            distancgroup.addChild(maingroup);
+
+            function maingroup_updateT() {
+                maingroup.updateT();
+            }
+
+            (function () {
+
+                var map_width = 3072;
+                var map_height = 1052;
+
+
+                for (var i in pics) {
+                    var item = pics[i];
+                    item.x = item.x - map_width / 2 - item.w / 2;
+                    item.y = item.y - map_height / 2 - item.h / 2;
+                }
+
+
+                var station = [
+                    //站点
+                    { x: -1148, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "福田口岸" },
+                    { x: -961, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "福民" },
+                    { x: -779, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "会展中心" },
+                    { x: -616, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "市民中心" },
+                    { x: -442, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "少年宫" },
+                    { x: -268, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "莲花北" },
+                    { x: -96, y: 130, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "上梅林" },
+                    { x: 96, y: 52, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "民乐" },
+
+                    { x: 251, y: 45, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "白石龙" },
+                    { x: 424, y: 43, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "深圳北站" },
+                    { x: 596, y: 42, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "红山" },
+                    { x: 770, y: 42, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "上塘" },
+                    { x: 942, y: 41, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "龙胜" },
+                    { x: 1126, y: 11, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "龙华" },
+                    { x: 1309, y: 11, z: 0, w: 53, h: 53, s: 1, n: "ploc.png", m: "清湖" },
+                ]
+
+
+                for (var i = 0; i < pics.length; i++) {
+                    var item = pics[i];
+                    var p = new C3D.Plane();
+                    p.size(item.w, item.h).position(item.x, item.y, item.z).scale(1).material({
+                        image: "pics/" + item.n
+                    }).update();
+                    maingroup.addChild(p)
+                }
+
+                for (var i = 0; i < station.length; i++) {
+                    var item = station[i];
+                    var p = new C3D.Plane();
+                    p.size(item.w, item.h).position(item.x, item.y, item.z + 50).scale(item.s).material({
+                        image: "pics/" + item.n
+                    }).update();
+                    p.el.className = "station-tag"
+                    p.el.tagname = item.m;
+                    if (item.m)
+                        p.el.innerHTML = '<div class="map-stt-name ' + (item.t ? 'set-top' : '') + '" >' + item.m + '</div>';
+                    maingroup.addChild(p)
+                }
+
+                var subway = new C3D.Sprite();
+                subway.position(0, 0, -10).update();
+                subway.el.innerHTML = '<div class="ani-subway"></div>';
+                maingroup.addChild(subway);
+
+                var car = new C3D.Sprite();
+                car.el.className = "ani-car-transition"
+                car.position(-961, 56, 49).update();
+                var carbody = new C3D.Plane();
+                carbody.size(334, 60).position(0, -40, 0).material({
+                    image: "img/p13.png"
+                }).update();
+                car.addChild(carbody);
+                //var carlight = new C3D.Plane();
+                //carlight.size(64, 41).position(-89, 0, 0).material({
+                //    image: "pic/c2.png"
+                //}).update();
+                //carlight.el.className = "ani-car-light"
+                //car.addChild(carlight);
+                //var carlight2 = new C3D.Plane();
+                //carlight2.size(64, 41).position(89, 0, 0).rotate(0, 0, 180).material({
+                //    image: "pic/c2.png"
+                //}).update();
+                //carlight2.el.className = "ani-car-light"
+                //car.addChild(carlight2);
+
+
+                maingroup.addChild(car);
+
+                var vector2deg = function () {
+                    var radianToDegreesFactor = 180 / Math.PI;
+                    return function (x, y) {
+                        if (x == 0 && y == 0) {
+                            return 360;
+                        }
+                        rad = Math.atan(y / x);
+                        var result = rad * radianToDegreesFactor;
+                        if (x < 0) {
+                            result += 180;
+                        }
+                        if (result < 0) {
+                            result += 360;
+                        }
+                        return result;
+                    }
+                }();
+
+                var big, small;
+                for (var i = 0; i < station.length; i++) {
+                    small = station[i - 1];
+                    if (i == 0) {
+                        small = station[i];
+                    }
+                    big = station[i + 1];
+                    if (i + 1 == station.length) {
+                        big = station[i]
+                    }
+                    station[i].r = vector2deg(big.x - small.x, big.y - small.y);
+                }
+
+
+
+                var last_idx = 0;
+                maingroup_updateT = function () {
+                    maingroup.updateT();
+                    var x = - maingroup.x / maingroup.scaleX;
+                    var last_x = station[last_idx].x;
+
+                    if (x < last_x) {
+                        var small_idx = 0;
+                        for (var i = last_idx - 1; i >= 0; i--) {
+                            if (station[i].x < x) {
+                                small_idx = i;
+                                break;
+                            }
+                        }
+                        if (x - station[small_idx].x < last_x - x) {
+                            last_idx = small_idx;
+                            var item = station[small_idx]
+                            car.x = item.x;
+                            car.y = item.y;
+                            //car.rotationZ = item.r;
+                            car.updateT();
+                        }
+
+                    } else if (x > last_x) {
+
+                        var big_idx = station.length - 1;
+                        for (var i = last_idx + 1; i < station.length; i++) {
+                            if (station[i].x > x) {
+                                big_idx = i;
+                                break;
+                            }
+                        }
+                        if (station[big_idx].x - x < x - last_x) {
+                            last_idx = big_idx;
+                            var item = station[big_idx]
+                            car.x = item.x;
+                            car.y = item.y;
+                            //car.rotationZ = item.r;
+                            car.updateT();
+                        }
+                    }
+                }
+
+                maingroup_updateT();
+
+            })();
+
+
+            $("#js-main-map").on("click", ".station-tag", function () {
+                $("#js-dialog").addClass("show");
+                $(".map-dlog-stntext").text(this.tagname)
+            });
+
+            $(".map-dialog").click(function (e) {
+                if (e.target == this)
+                    $(this).removeClass("show");
+            });
+
+            $(".map-dlog-tabs>div").click(function (e) {
+                var $this = $(this);
+                var idx = $this.index();
+                $this.addClass("active").siblings(".active").removeClass("active");
+                $("div.map-dlog-slide>div").eq(idx).addClass("active").siblings(".active").removeClass("active");
+
+            });
+
+            //$(".map-dlog-cdiv").on("click", "img", function () {
+            //    $("#js-dlog-storeinfo").addClass("show");
+            //});
+
+            $("#js-dlog-newmsg").click(function () {
+                $("#js-dlog-collect-info").addClass("show");
+            });
+
+
+
+
+
+            $(window).resize(function () {
+                resize();
+            });
+            var touchhammer = new Hammer(js_main_map[0], {});
+            touchhammer.get('pan').set({ direction: Hammer.DIRECTION_ALL, threshold: 0, });
+            //touchhammer.get('pinch').set({ enable: true });
+            var panstartx, panstarty;
+            touchhammer.on('panstart', function (ev) {
+                panstartx = 0;
+                panstarty = 0;
+
+            });
+            touchhammer.on('panmove', function (ev) {
+                maingroup.x += ev.deltaX - panstartx;
+                maingroup.y += (ev.deltaY - panstarty) / 2;
+                maingroup_updateT();
+                panstartx = ev.deltaX;
+                panstarty = ev.deltaY;
+            });
+            //touchhammer.on('panend', function (ev) {
+
+            //})
+            //touchhammer.on('pinchend', function (ev) {
+            //    //if (ev.scale > 2) {
+            //    //    levelChange(1)
+            //    //} else if (ev.scale < 0.5) {
+            //    //    levelChange(-1)
+            //    //}
+            //});
+            js_main_map[0].addEventListener("touchstart", function () {
+                distancgroup.z = -fov - 60;
+                distancgroup.updateT();
+            });
+            js_main_map[0].addEventListener("touchend", function () {
+                distancgroup.z = -fov;
+                distancgroup.updateT();
+            });
+
+
+
+            //function scrollFunc(e) {
+            //    e = e || window.event;
+            //    var theval;
+            //    if (e.wheelDelta) {//IE/Opera/Chrome
+            //        theval = e.wheelDelta / 120;
+            //    } else if (e.detail) {//Firefox
+            //        theval = -e.detail / 3;
+            //    }
+            //    levelChange(theval)
+            //}
+            //js_main_map[0].onmousewheel = scrollFunc;//IE/Opera/Chrome/Safari
+
+            // 注册陀螺仪的事件
+            (function () {
+
+                var DEG2RAD = Math.PI / 180;
+                var RAD2DEG = 180 / Math.PI;
+
+                function degToRad(degrees) {
+                    return degrees * DEG2RAD;
+                }
+
+                function radToDeg(radians) {
+                    return radians * RAD2DEG;
+                }
+
+                var deviceOrientation = null;
+                var sub_deviceOrientation = {
+                    alpha: 0,
+                    beta: 0,
+                    gamma: 0
+                };
+                var screenOrientation = 0;
+
+                var onDeviceOrientationChangeEvent = function (event) {
+                    if (deviceOrientation != null) {
+                        var beta = event.beta - deviceOrientation.beta;
+                        var alpha = event.alpha - deviceOrientation.alpha;
+                        var gamma = event.gamma - deviceOrientation.gamma;
+
+
+                        if (beta > 180) {
+                            beta = 360 - beta;
+                        } else if (beta < -180) {
+                            beta = 360 + beta;
+                        }
+
+                        beta > 180 ? beta = 360 - beta : (beta < -180 ? beta = 360 + beta : 0);
+                        gamma > 180 ? gamma = 360 - gamma : (gamma < -180 ? gamma = 360 + gamma : 0);
+                        alpha > 180 ? alpha = 360 - alpha : (alpha < -180 ? alpha = 360 + alpha : 0);
+
+
+                        console.log(beta, gamma, alpha);
+
+                        if (Math.abs(beta) > 20) {
+                            beta = 0;
+                        }
+                        if (Math.abs(gamma) > 20) {
+                            gamma = 0;
+                        }
+                        if (Math.abs(alpha) > 20) {
+                            alpha = 0;
+                        }
+
+                        var rd_beta = degToRad(event.beta - beta / 2);
+                        var rd_gamma = degToRad(event.gamma - gamma / 2);
+                        var rd_alpha = degToRad(event.alpha - alpha / 2);
+
+                        var kshu = beta;
+                        var khen = 0;
+
+                        khen += gamma * Math.cos(rd_beta) + alpha * Math.sin(rd_beta) //+ gamma * Math.sin(rd_alpha)// + alpha * Math.sin(rd_beta) + alpha * Math.cos(rd_gamma);
+
+                        if (screenOrientation == 0) {
+                            maingroup.y += (kshu * 10) / 2;
+                            maingroup.x += khen * 10;
+                        } else if (screenOrientation == 90) {
+                            maingroup.y -= khen * 10 * 0.5;
+                            maingroup.x += kshu * 10;
+                        } else if (screenOrientation == -90) {
+                            maingroup.y += khen * 10 * 0.5;
+                            maingroup.x -= kshu * 10;
+                        }
+
+                        //console.log(kshu, khen, Math.cos(rd_beta));
+                        maingroup_updateT();
+
+                    }
+                    deviceOrientation = event;
+                };
+                var onScreenOrientationChangeEvent = function () {
+                    screenOrientation = window.orientation || 0;
+                };
+
+                onScreenOrientationChangeEvent();
+                window.addEventListener('orientationchange', onScreenOrientationChangeEvent, false);
+                window.addEventListener('deviceorientation', onDeviceOrientationChangeEvent, false);
+
+            })();
+
+        }
+
+        // addEvents
+
+        $("#js-index-btn1").click(function () {     //友你会
+            $("#js-dlog-unh").addClass("show");
+        });
+        $("#js-index-btn2").click(function () {     //搭乘指南
+            location.hash = "#guide";
+            $("#js-guide-page").addClass("show");
+        });
+        $("#js-index-btn3").click(function () {     //吃喝玩乐
+            location.hash = "#mapview";
+            js_main_map.show();
+        });
+        $("#js-index-btn4").click(function () {     //近期优惠
+            $("#js-dlog-jqqd").addClass("show");
+        });
+        $("#js-guide-page .guide-close").click(function () {
+            $("#js-guide-page").removeClass("show");
+        });
+        $("#js-guide-tabs>div").click(function () {
+            var $this = $(this);
+            if (!$this.hasClass("active")) {
+                var index = $this.index();
+                $this.addClass("active").siblings(".active").removeClass("active");
+                $("#js-guide-slide>div").eq(index).addClass("active").siblings(".active").removeClass("active");
+            }
+        });
+
+        // 查看商铺详情事件注册
+        $("#js-map-dlog-main").on("click",".map-store-item",function(){
+            var $this = $(this);
+
+            // 此处处理商铺详情页面的内容变化
+
+            $("#js-dlog-storeinfo").addClass("show");
+        });
+
+        // 商铺详情的领取优惠券按钮点击事件
+        $("#js-detail-get-btn").click(function(){
+            $("#js-dlog-jqqd").addClass("show");
+        });
+
+
+        $("#js-transfer-search").click(function () {
+            var start = $("#js-transfer-start").val();
+            var end = $("#js-transfer-end").val();
+
+            // 此处编写站点查询相关代码
+
+        });
+
+        $("#js-ci-form").submit(function () {
+            var $this = $(this);
+            var sdata = $this.serializeArray();
+            var data = {};
+            for (var i in sdata) {
+                data[sdata[i].name] = sdata[i].value;
+            }
+
+            if ($.trim(data.reason).length <= 0) {
+                alert("推荐理由不能为空！");
+                return false;
+            }
+            if ($.trim(data.people).length <= 0) {
+                alert("推荐人不能为空！");
+                return false;
+            }
+            if ($.trim(data.phone).length <= 0) {
+                alert("电话不能为空！");
+                return false;
+            }
+
+            $.ajax({
+                url: "",
+                type: "get",
+                data: data,
+                success: function (result) {
+                    alert("提交成功!")
+                    $this[0].reset();
+                },
+                error: function () {
+                    alert("提交失败!")
+                }
+
+            });
+
+            return false;
+        });
+
+
+
+        window.addEventListener("hashchange", function () {
+            if (location.hash == "") {
+                js_main_map.hide();
+                if ($("#js-guide-page").hasClass("show")) {
+                    $("#js-guide-page").removeClass("show");
+                }
+            }
+        });
+
+
+        queue.loadManifest(preload_imgs);
+        //});
+
+    </script>
+
+</body>
+</html>

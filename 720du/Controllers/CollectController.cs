@@ -27,36 +27,36 @@ namespace du720.Controllers
             hr.StatsCode = 500;
             hr.Message = "提交失败";
 
-            if (string.IsNullOrWhiteSpace(form["txtUserName"]))
+            if (string.IsNullOrWhiteSpace(form["people"]))
             {
                 hr.Message = "请输入联系人。";
                 return Json(hr);
             }
 
-            if (string.IsNullOrWhiteSpace(form["txtPhone"]))
+            if (string.IsNullOrWhiteSpace(form["phone"]))
             {
                 hr.Message = "请输入手机号。";
                 return Json(hr);
             }
-            else if (!Regex.IsMatch(form["txtPhone"], "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$"))
+            else if (!Regex.IsMatch(form["phone"], "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$"))
             {
                 hr.Message = "手机号码格式不对。";
                 return Json(hr);
             }
 
-            if (string.IsNullOrWhiteSpace(form["txtReason"]))
+            if (string.IsNullOrWhiteSpace(form["reason"]))
             {
                 hr.Message = "请输入推荐原因。";
                 return Json(hr);
             }
-            else if (form["txtReason"].ToString().Length > 200)
+            else if (form["reason"].ToString().Length > 500)
             {
-                hr.Message = "推荐原因不能超过200个字符。";
+                hr.Message = "推荐原因不能超过500个字符。";
                 return Json(hr);
             }
 
-            int stationId = Convert.ToInt32(form["ddlStationId"]);
-            int collectType = Convert.ToInt32(form["ddlType"]);
+            int stationId = Convert.ToInt32(form["station"]);
+            int collectType = Convert.ToInt32(form["type"]);
 
             if (!Enum.IsDefined(typeof(Enums.eStation), stationId))
             {
@@ -67,9 +67,9 @@ namespace du720.Controllers
             CollectInfoEntity entityCollect = new CollectInfoEntity();
             entityCollect.StationId = stationId;
             entityCollect.CollectType = collectType;
-            entityCollect.UserName = form["txtUserName"].Trim();
-            entityCollect.Phone = form["txtPhone"].Trim();
-            entityCollect.Reason = form["txtReason"].Trim();
+            entityCollect.UserName = form["people"].Trim();
+            entityCollect.Phone = form["phone"].Trim();
+            entityCollect.Reason = form["reason"].Trim();
             entityCollect.AddTime = DateTime.Now;
             CollectInfoBLL.Insert(entityCollect);
             hr.StatsCode = 200;

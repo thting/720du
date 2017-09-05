@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>演示</title>
+    <title>4号线沿线生活全景</title>
     <link rel="stylesheet" href="css/style.css" />
     <link href="Content/css/other.css?v=1" rel="stylesheet" />
 </head>
@@ -15,7 +15,7 @@
         <div id="js-index-page" class="index-page">
             <div id="js-index-loading" class="index-loading">
                 <div id="js-loading-train" class="index-load-train"></div>
-                <div id="js-loading-txt" class="index-loading-info">20%</div>
+                <div id="js-loading-txt" class="index-loading-info">0%</div>
             </div>
             <div id="js-index-btns" class="index-btns">
                 <div id="js-index-btn1" class="index-btn" title="友你会">
@@ -102,7 +102,7 @@
                         始末班车
                     </div>
                     <div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -118,9 +118,8 @@
                     <div data-type="2">美食餐饮</div>
                     <div data-type="3">休闲娱乐</div>
                     <div data-type="4">周边景点</div>
-                    <div data-type="-1">友你会</div>
                 </div>
-                <div class="map-dlog-slide">
+                <div id="js-map-dlog-main" class="map-dlog-slide">
                     <div class="active">
                         <div class="map-dlog-hdiv">
                             <div class="map-dlog-station map-dlog-stntext">龙胜站</div>
@@ -181,20 +180,65 @@
                     </div>-->
                     <div>
                         <div class="map-dlog-hdiv">
-                            <div class="map-dlog-station"></div>
+                            <div class="map-dlog-station map-dlog-stntext"></div>
                         </div>
                         <div class="map-dlog-cdiv">
-                            <img src="img/unh.jpg" style="width:100%;" />
+                            <img class="zwkt-img" src="img/zwkt.png" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!--  店铺信息页面  -->
         <div id="js-dlog-storeinfo" class="map-dialog">
             <div class="map-dlog-cont storeinfo">
                 <div class="map-dlog-wrapper">
-                    <img class="dlog-storeinfo-img" src="img/store_info2.png" />
+                    <img class="dlog-collect-info dlog-detail-info" src="img/sp_info_tit.png" />
+                    <!-- <img class="dlog-storeinfo-img" src="img/store_info2.png" /> -->
+                    <div class="detail-cont">
+                        <div class="detail-imgd">
+                            <img src="img/st_icon.jpg" />
+                        </div>
+                        <div class="detail-infod">
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                        </div>
+                        <div class="detail-btnd">
+                            <button id="js-detail-get-btn">
+                                <img src="img/st_linqu.png" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 友你会页面 -->
+        <div id="js-dlog-unh" class="map-dialog">
+            <div class="map-dlog-cont unh-info">
+                <div class="unh-wrapper">
+                    <div class="map-dlog-hdiv">
+                        <div class="map-dlog-station"></div>
+                        <div class="unh-head-links">
+                            <a href="#">积分政策</a>
+                            <a href="http://wechat.mtrsz.com.cn/m/userbind">登录</a>
+                            <a href="https://www.mtrsz.com.cn/members/user/mobileregister?from=singlemessage&isappinstalled=0">注册</a>
+                        </div>
+                    </div>
+                    <div class="map-dlog-cdiv">
+                        <img src="img/unh.jpg" style="width:100%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 敬请期待页面 -->
+        <div id="js-dlog-jqqd" class="map-dialog">
+            <div class="map-dlog-cont auto-size">
+                <div class="jqqd-cont">
+                    <img src="img/zwkt.png" />
                 </div>
             </div>
         </div>
@@ -202,7 +246,56 @@
         <div id="js-dlog-collect-info" class="map-dialog">
             <div class="map-dlog-cont collect-info">
                 <div class="map-dlog-wrapper">
-                    <img class="dlog-collect-info" src="img/cellect_info.png" />
+                    <img class="dlog-collect-info" src="img/cellect_info_tit.png" />
+                    <div class="ci-cont">
+                        <form id="js-ci-form" class="ci-form">
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-station">站点</label>
+                                <select id="js-ci-station" name="station">
+                                    <option value="15">福田口岸</option>
+                                    <option value="14">福民</option>
+                                    <option value="13">会展中心</option>
+                                    <option value="12">市民中心</option>
+                                    <option value="11">少年宫</option>
+                                    <option value="10">莲花北</option>
+                                    <option value="9">上梅林</option>
+                                    <option value="8">民乐</option>
+                                    <option value="7">白石龙</option>
+                                    <option value="6">深圳北站</option>
+                                    <option value="5">红山</option>
+                                    <option value="4">上塘</option>
+                                    <option value="3">龙胜</option>
+                                    <option value="2">龙华</option>
+                                    <option value="1">清湖</option>
+                                </select>
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-type">商铺类型</label>
+                                <select id="js-ci-type" name="type">
+                                    <option value="1">地铁商铺</option>
+                                    <option value="2">美食餐饮</option>
+                                    <option value="3">休闲娱乐</option>
+                                    <option value="4">周边景点</option>
+                                </select>
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-txt">推荐理由</label>
+                                <textarea id="js-ci-txt" name="reason"></textarea>
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-by">推荐人</label>
+                                <input class="ci-text-ipt" id="js-ci-by" type="text" name="people" />
+                            </div>
+                            <div class="ci-ipt-row">
+                                <label for="js-ci-phone">联系电话</label>
+                                <input class="ci-text-ipt" id="js-ci-phone" type="text" name="phone" maxlength="11" />
+                            </div>
+                            <div class="ci-ipt-row">
+                                <button id="btnSend" class="ci-submit" type="submit">提交</button>
+                            </div>
+                            <p class="ci-ft-info">*以上信息一经采用，即可获得精美礼品一份</p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -215,6 +308,7 @@
     <script src="js/preloadjs-0.6.2.min.js"></script>
     <script src="js/index.js"></script>
     <script src="Content/js/Module/Common.js?v=1"></script>
+    <script src="Content/js/Lib/Layer/layer.m.js" type="text/javascript"></script>
     <script src="Content/js/Module/index.js?v=1"></script>
     <script>
 
@@ -521,6 +615,7 @@
                 $(".map-dlog-stntext").text(this.tagname);
                 var stationId = stationArr[this.tagname];
                 $("#btnShot").attr("href", "/FullShot/Index/" + stationId);
+                $("#js-dlog-newmsg").data("staid", stationId);
                 $(".map-dlog-tabs>div").eq(0).addClass("active").siblings(".active").removeClass("active");
                 page = 1;
                 isLoading = false;
@@ -537,14 +632,14 @@
                 var idx = $this.index();
                 var type = $this.data("type");
                 $this.addClass("active").siblings(".active").removeClass("active");
-                if (type == -1) { //友你会
-                    $(".map-dlog-slide>div").removeClass("active").eq(1).addClass("active");
-                    return;
-                }
-                else {
-                    $(".map-dlog-slide>div").removeClass("active").eq(0).addClass("active");
-                }
-                
+                //if (type == -1) { //友你会
+                //    $(".map-dlog-slide>div").removeClass("active").eq(1).addClass("active");
+                //    return;
+                //}
+                //else {
+                //    $(".map-dlog-slide>div").removeClass("active").eq(0).addClass("active");
+                //}
+
                 //$("div.map-dlog-slide>div").eq(idx).addClass("active").siblings(".active").removeClass("active");
                 page = 1;
                 isLoading = false;
@@ -556,6 +651,8 @@
             //});
 
             $("#js-dlog-newmsg").click(function () {
+                $("#js-ci-station").val($(this).data("staid"));
+                $("#js-ci-type").val($(".map-dlog-tabs .active").data("type"));
                 $("#js-dlog-collect-info").addClass("show");
             });
 
@@ -708,7 +805,7 @@
         // addEvents
 
         $("#js-index-btn1").click(function () {     //友你会
-
+            $("#js-dlog-unh").addClass("show");
         });
         $("#js-index-btn2").click(function () {     //搭乘指南
             location.hash = "#guide";
@@ -719,7 +816,7 @@
             js_main_map.show();
         });
         $("#js-index-btn4").click(function () {     //近期优惠
-
+            $("#js-dlog-jqqd").addClass("show");
         });
         $("#js-guide-page .guide-close").click(function () {
             $("#js-guide-page").removeClass("show");
@@ -739,13 +836,95 @@
                 }
             }
         });
+        
+        // 查看商铺详情事件注册
+        $("#js-map-dlog-main").on("click", ".map-store-item", function () {
+            var $this = $(this),
+                $store = $("#js-dlog-storeinfo"),
+                $img = $(".detail-imgd", $store),
+                $title = $(".detail-infod p", $store).eq(0),
+                $addr = $(".detail-infod p", $store).eq(1),
+                $shopno = $(".detail-infod p", $store).eq(2);
+            $img.attr("src", $this.data("imgsrc"));
+            $title.html($this.data("title"));
+            $addr.html($this.data("addr"));
+            $shopno.html($this.data("shopno"));
+
+
+            // 此处处理商铺详情页面的内容变化
+
+            $("#js-dlog-storeinfo").addClass("show");
+        });
+
+        // 商铺详情的领取优惠券按钮点击事件
+        $("#js-detail-get-btn").click(function () {
+            $("#js-dlog-jqqd").addClass("show");
+        });
+
+
         $("#js-transfer-search").click(function () {
             var start = $("#js-transfer-start").val();
             var end = $("#js-transfer-end").val();
 
             // 此处编写站点查询相关代码
 
-        })
+        });
+
+        $("#js-ci-form").submit(function () {
+            var $this = $(this);
+            var sdata = $this.serializeArray();
+            var data = {};
+            for (var i in sdata) {
+                data[sdata[i].name] = sdata[i].value;
+            }
+
+            if ($.trim(data.reason).length <= 0) {
+                layerHelp.msg("推荐理由不能为空！");
+                return false;
+            }
+            if ($.trim(data.people).length <= 0) {
+                layerHelp.msg("推荐人不能为空！");
+                return false;
+            }
+            if ($.trim(data.phone).length <= 0) {
+                layerHelp.msg("电话不能为空！");
+                return false;
+            }
+
+            var sucess = false;
+            $.ajax({
+                type: "POST",
+                url: "/Collect/doSave",
+                data: data,
+                dataType: "json",
+                beforeSend: function () {
+                    layerHelp.loading2(true); $("#btnSend").attr("disabled", "disabled").text('提交...');
+                },
+                success: function (result) {
+                    layerHelp.loading2Close();
+                    var handleResult = JsonEval(result);
+                    if (handleResult.StatsCode == 200) {
+                        sucess = true;
+                        $("#btnSend").text('提交成功');
+                        var str = handleResult.Message;
+                        layer.open({
+                            content: '<div style="text-align:center;"><p>已提交成功</p></div>',
+                            style: 'border:none;',
+                            time: 3,
+                            end: function () {
+                                
+                            }
+                        });
+                    } else {
+                        layerHelp.msg(handleResult.Message);
+                    }
+                },
+                complete: function () {
+                    if (!sucess) { $("#btnSend").removeAttr("disabled").text('提交'); }
+                }
+            });
+            return false;
+        });
 
 
 

@@ -748,7 +748,6 @@
     <Content Include="img\st_linqu.png" />
     <Content Include="img\unh.jpg" />
     <Content Include="img\zwkt.png" />
-    <Content Include="index - 复制.html" />
     <Content Include="js2\amazeui.min.js" />
     <Content Include="js2\app.js" />
     <Content Include="js2\jquery.min.js" />

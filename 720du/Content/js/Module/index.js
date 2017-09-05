@@ -38,7 +38,7 @@ function nextpage(stationId, shopType) {
             }
             else {
                 if (page == 1) {
-                    $("#divList").append($('<div class="ac">没有数据</div>'));
+                    $("#divList").append($('<img class="zwkt-img" src="img/zwkt.png">'));
                 }
                 else {
                     $("#divList").append($('<div class="ac">没有更多了</div>'));
@@ -52,7 +52,7 @@ function nextpage(stationId, shopType) {
 function createHTML(data) {
     var str = "";
     $.each(data, function (i, item) {
-        str += '<a id="r' + item.Id + '" class="map-store-item listItem">';
+        str += '<a id="r' + item.Id + '" class="map-store-item listItem" data-imgsrc="' + item.ShopImageUrl + '" data-title="' + item.ShopName + '" data-addr="' + item.Address + '" data-shopno="' + item.ShopNo + '">';
         str += '    <div class="lef">';
         str += '        <img src="' + item.ShopImageUrl + '">';
         str += '        <div class="map-store-list-btn">领取优惠券</div>';

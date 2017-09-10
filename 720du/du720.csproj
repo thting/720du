@@ -695,8 +695,14 @@
     <Content Include="Content\js\Lib\Zepto\zepto.min.js" />
     <Content Include="Content\js\Module\Common.js" />
     <Content Include="Content\js\Module\index.js" />
+    <Content Include="Content\js\Module\site.js" />
+    <Content Include="css\amazeui.min.css" />
+    <Content Include="css\app.css" />
+    <Content Include="css\demo.css" />
+    <Content Include="css\integral.css" />
     <Content Include="css\loading2.gif" />
     <Content Include="Content\css\other.css" />
+    <Content Include="css\main.css" />
     <Content Include="css\style.css" />
     <Content Include="css\viewdemo.css" />
     <Content Include="css\vr360.css" />
@@ -1157,6 +1163,8 @@
     <Content Include="img2\bsl.jpg" />
     <Content Include="img2\p-s.png" />
     <Content Include="img2\vvv.jpg" />
+    <Content Include="img\backtohome.png" />
+    <Content Include="img\bg_line.png" />
     <Content Include="img\cellect_info.png" />
     <Content Include="img\cellect_info_tit.png" />
     <Content Include="img\fullshot.png" />

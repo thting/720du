@@ -88,18 +88,17 @@
                             </div>
                         </div>
                         <div id="js-transfer-result" class="transfer-result">
-                            <div>票价：5元</div>
-                            <div>途径站：11站</div>
-                            <div>换乘次数：0次</div>
-                            <div>预计时间：25分钟</div>
-                            <div>路线信息：从【清湖】乘坐4号线往福田口岸方向至【少年宫】</div>
+                            <div>票价：</div>
+                            <div>途径站：</div>
+                            <div>预计时间：</div>
+                            <div>路线信息：</div>
                         </div>
                     </div>
                     <div>
-                        <img class="guide-line-map" src="img/linemap-img.jpg" />
+                       <a id="js-linemap-previe" href="img/linemap-img-big.jpg"><img class="guide-line-map" src="img/linemap-img.jpg" /></a>
                     </div>
                     <div>
-                        始末班车
+                        <img class="guide-line-map" src="img/yunying.png" />
                     </div>
                     <div>
 
@@ -109,10 +108,14 @@
         </div>
 
         <div id="js-main-map" class="main-map" style="display:none;">
+            <div id="js-backtohome" class="backtohome">
+                <img src="img/backtohome.png" alt="">
+            </div>
         </div>
 
         <div id="js-dialog" class="map-dialog">
             <div class="map-dlog-cont">
+                <div class="map-dlog-close"></div>
                 <div class="map-dlog-tabs">
                     <div class="active" data-type="1">地铁商铺</div>
                     <div data-type="2">美食餐饮</div>
@@ -193,6 +196,7 @@
         <!--  店铺信息页面  -->
         <div id="js-dlog-storeinfo" class="map-dialog">
             <div class="map-dlog-cont storeinfo">
+                <div class="map-dlog-close"></div>
                 <div class="map-dlog-wrapper">
                     <img class="dlog-collect-info dlog-detail-info" src="img/sp_info_tit.png" />
                     <!-- <img class="dlog-storeinfo-img" src="img/store_info2.png" /> -->
@@ -200,16 +204,13 @@
                         <div class="detail-imgd">
                             <img src="img/st_icon.jpg" />
                         </div>
-                        <div class="detail-infod">
-                            <p></p>
-                            <p></p>
-                            <p></p>
+                        <div class="detail-infod">                            
                         </div>
-                        <div class="detail-btnd">
+                        <!--<div class="detail-btnd">
                             <button id="js-detail-get-btn">
                                 <img src="img/st_linqu.png" alt="">
                             </button>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -218,11 +219,12 @@
         <!-- 友你会页面 -->
         <div id="js-dlog-unh" class="map-dialog">
             <div class="map-dlog-cont unh-info">
+                <div class="map-dlog-close"></div>
                 <div class="unh-wrapper">
                     <div class="map-dlog-hdiv">
                         <div class="map-dlog-station"></div>
                         <div class="unh-head-links">
-                            <a href="#">积分政策</a>
+                            <a href="integral.html" target="_blank">积分政策</a>
                             <a href="http://wechat.mtrsz.com.cn/m/userbind">登录</a>
                             <a href="https://www.mtrsz.com.cn/members/user/mobileregister?from=singlemessage&isappinstalled=0">注册</a>
                         </div>
@@ -237,6 +239,7 @@
         <!-- 敬请期待页面 -->
         <div id="js-dlog-jqqd" class="map-dialog">
             <div class="map-dlog-cont auto-size">
+                <div class="map-dlog-close"></div>
                 <div class="jqqd-cont">
                     <img src="img/zwkt.png" />
                 </div>
@@ -245,6 +248,7 @@
 
         <div id="js-dlog-collect-info" class="map-dialog">
             <div class="map-dlog-cont collect-info">
+                <div class="map-dlog-close"></div>
                 <div class="map-dlog-wrapper">
                     <img class="dlog-collect-info" src="img/cellect_info_tit.png" />
                     <div class="ci-cont">
@@ -310,6 +314,7 @@
     <script src="Content/js/Module/Common.js?v=1"></script>
     <script src="Content/js/Lib/Layer/layer.m.js" type="text/javascript"></script>
     <script src="Content/js/Module/index.js?v=1"></script>
+    <script src="Content/js/Module/site.js?v=1"></script>
     <script>
 
 
@@ -546,8 +551,23 @@
 
 
 
+                var haf_map_width = map_width/2 - 600;
+                var haf_map_height = map_height/2 - 200;
                 var last_idx = 0;
                 maingroup_updateT = function () {
+
+                    if(maingroup.x < -haf_map_width ){
+                        maingroup.x = -haf_map_width;
+                    }else if(maingroup.x > haf_map_width){
+                        maingroup.x = haf_map_width
+                    }
+                    if(maingroup.y < - haf_map_height){
+                        maingroup.y = -haf_map_height
+                    }else if(maingroup.y > haf_map_height){
+                        maingroup.y = haf_map_height
+                    }
+
+
                     maingroup.updateT();
                     var x = -maingroup.x / maingroup.scaleX;
                     var last_x = station[last_idx].x;
@@ -804,6 +824,11 @@
 
         // addEvents
 
+        $("#js-backtohome").click(function(){
+            location.hash = "";
+            js_main_map.hide();
+        })
+
         $("#js-index-btn1").click(function () {     //友你会
             $("#js-dlog-unh").addClass("show");
         });
@@ -841,14 +866,14 @@
         $("#js-map-dlog-main").on("click", ".map-store-item", function () {
             var $this = $(this),
                 $store = $("#js-dlog-storeinfo"),
-                $img = $(".detail-imgd", $store),
-                $title = $(".detail-infod p", $store).eq(0),
-                $addr = $(".detail-infod p", $store).eq(1),
-                $shopno = $(".detail-infod p", $store).eq(2);
+                $img = $(".detail-imgd img", $store),
+                $summary = $(".detail-infod", $store);
+                //$addr = $(".detail-infod p", $store).eq(1),
+                //$shopno = $(".detail-infod p", $store).eq(2);
             $img.attr("src", $this.data("imgsrc"));
-            $title.html($this.data("title"));
-            $addr.html($this.data("addr"));
-            $shopno.html($this.data("shopno"));
+            $summary.html($this.data("summury"));
+            //$addr.html($this.data("addr"));
+            //$shopno.html($this.data("shopno"));
 
 
             // 此处处理商铺详情页面的内容变化
@@ -861,14 +886,97 @@
             $("#js-dlog-jqqd").addClass("show");
         });
 
+        //弹窗关闭按钮点击
+        $(".map-dlog-close").click(function(){
+            $(this).parents(".map-dialog").removeClass("show");
+        })
 
-        $("#js-transfer-search").click(function () {
+        //查询换乘
+        function transitSearch() {
             var start = $("#js-transfer-start").val();
             var end = $("#js-transfer-end").val();
 
             // 此处编写站点查询相关代码
+            if ($.trim(start).length <= 0) {
+                layerHelp.msg("起始站不能为空！");
+                return false;
+            }
+            if ($.trim(end).length <= 0) {
+                layerHelp.msg("终点站不能为空！");
+                return false;
+            }
 
+            var scode, ecode;
+            for (var i = 0 ; i < sites.length; i++)
+            {
+                var _sites = sites[i];
+                for (var s in _sites) {
+                    if (start == _sites[s].n || start + '站' == _sites[s].n) {
+                        scode = _sites[s].c;
+                    }
+                    if (end == _sites[s].n || end + '站' == _sites[s].n) {
+                        ecode = _sites[s].c;
+                    }
+                }
+            }
+            if (!scode) {
+                layerHelp.msg("起始站不存在！");
+                return false;
+            }
+            if (!ecode) {
+                layerHelp.msg("终点站不存在！");
+                return false;
+            }
+            if (scode == ecode) {
+                layerHelp.msg("起始站和终点站不能一样！");
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/TransitSearch",
+                data: {
+                    s: scode,
+                    e: ecode
+                },
+                dataType: "json",
+                beforeSend: function () {
+                    layerHelp.loading2(true); $("#js-transfer-search").off().text('查询...');
+                },
+                success: function (result) {
+                    layerHelp.loading2Close();
+                    var handleResult = JsonEval(result);
+                    if (handleResult.StatsCode == 200) {
+                        var $transitResult = $("#js-transfer-result");
+                        var jsonData = handleResult.Data || {};
+                        $("div", $transitResult).eq(0).html('票价：' + (jsonData.price || "") + '元');
+                        $("div", $transitResult).eq(1).html('途径站：' + (jsonData.sitecount || "") + '站');
+                        $("div", $transitResult).eq(2).html('预计时间：' + (jsonData.period || "") + '分钟');
+                        $("div", $transitResult).eq(3).html('路线信息：' + (jsonData.sitename2 || "") + '');
+                    } else {
+                        layerHelp.msg(handleResult.Message);
+                    }
+                },
+                complete: function () {
+                    $("#js-transfer-search").on("click", function () { transitSearch(); }).text('查询');
+                }
+            });
+            return false;
+        }
+
+        $("#js-transfer-search").on("click", function () {
+            transitSearch();
         });
+
+        $("#js-linemap-previe").click(function(e){
+            if (window.WeixinJSBridge) {
+                WeixinJSBridge.invoke('imagePreview', {
+                    'current': this.href,
+                    'urls': [this.href]
+                });
+                return false;
+            }
+        })
 
         $("#js-ci-form").submit(function () {
             var $this = $(this);

@@ -7,8 +7,8 @@
 /*space vars*/
 /*screen min-width, min-height*/
 /*
- * 1rem=20px for 320px(中低端分辨率).
- * 1rem=22.5px for 360px(高端分辨率).
+ * 1rem=20px for 320px(Ã¤Â¸Â­Ã¤Â½Å½Ã§Â«Â¯Ã¥Ë†â€ Ã¨Â¾Â¨Ã§Å½â€¡).
+ * 1rem=22.5px for 360px(Ã©Â«ËœÃ§Â«Â¯Ã¥Ë†â€ Ã¨Â¾Â¨Ã§Å½â€¡).
  */
 
 html {
@@ -48,7 +48,7 @@ body {
     -webkit-text-size-adjust: none;
     background: #fff;
     color: #333333;
-    font-family: "Myriad Pro", Arial, "FZLanTingHei-R-GBK", 方正兰亭黑, "Microsoft YaHei", 微软雅黑, STHeiti, 华文黑体, SimSun, 宋体, sans-serif;
+    font-family: "Myriad Pro", Arial, "FZLanTingHei-R-GBK", Ã¦â€“Â¹Ã¦Â­Â£Ã¥â€¦Â°Ã¤ÂºÂ­Ã©Â»â€˜, "Microsoft YaHei", Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜, STHeiti, Ã¥ÂÅ½Ã¦â€“â€¡Ã©Â»â€˜Ã¤Â½â€œ, SimSun, Ã¥Â®â€¹Ã¤Â½â€œ, sans-serif;
     font-size: 100%;
     line-height: normal;
     -webkit-font-smoothing: antialiased;
@@ -71,7 +71,7 @@ a, *[onclick] {
         outline: none;
     }
 
-/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+/* Ã¦ÂÂ¥Ã¨â€¡Âªyahoo, Ã¨Â®Â©Ã¦Â â€¡Ã©Â¢ËœÃ©Æ’Â½Ã¨â€¡ÂªÃ¥Â®Å¡Ã¤Â¹â€°, Ã©â‚¬â€šÃ¥Âºâ€Ã¥Â¤Å¡Ã¤Â¸ÂªÃ§Â³Â»Ã§Â»Å¸Ã¥Âºâ€Ã§â€Â¨ */
 h1, h2, h3, h4, h5, h6 {
     font-size: 100%;
     font-weight: 500;
@@ -189,10 +189,10 @@ html {
 
 .guide-bgimg1 {
     position: absolute;
-    top: 46px;
-    left: 1px;
+    top: 47px;
+    left: 2px;
     width: 88px;
-    height: 16px;
+    /* height: 16px; */
     /*background-image: url(../img/guide_0.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -402,7 +402,18 @@ div.transfer-btn {
 .main-group {
     transition: transform 600ms;
 }
-
+.backtohome{
+    position: absolute;
+    top: 16px;
+    left: 17px;
+    z-index: 100;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.87);
+    background-color: #2b2b29;
+}
+.backtohome>img{
+    width: 34px;
+}
 
 .test-textdiv {
     position: absolute;
@@ -749,7 +760,7 @@ div.transfer-btn {
     overflow-y: auto;
 }
 
-.map-dlog-cont.storeinfo, .map-dlog-cont.collect-info,.map-dlog-cont.auto-size {
+ .map-dlog-cont.collect-info,.map-dlog-cont.auto-size {
     top: 50%;
     transform: translateY(-50%) translateY(30px);
     bottom: auto;
@@ -758,6 +769,32 @@ div.transfer-btn {
 .dlog-storeinfo-img {
     max-width: 85%;
     max-height: 360px;
+}
+.storeinfo>.map-dlog-wrapper{
+
+position: absolute;
+
+top: 0px;
+
+bottom: 20px;
+
+left: 0;
+
+right: 0;
+}
+.storeinfo .detail-cont{
+    
+position: absolute;
+    
+top: 22px;
+    
+bottom: 0;
+    
+left: 0px;
+    
+right: 0px;
+    
+overflow-y: auto;
 }
 
 .map-store-list {
@@ -818,7 +855,7 @@ div.transfer-btn {
 
         .map-store-ulinfo > li:before {
             position: absolute;
-            content: '·';
+            content: 'Â·';
             display: inline-block;
             left: -7px;
         }
@@ -931,13 +968,14 @@ div.transfer-btn {
     width: 100%;
 }
 .detail-infod{
-    font-size: 0;
+    font-size: 12px;
     text-align: left;
+    line-height: 1.4;
 }
 .detail-infod>p{
     position: relative;
     display: inline-block;
-    width: 45%;
+    width: 44%;
     font-size: 12px;
     vertical-align: top;
     text-align: left;
@@ -945,22 +983,53 @@ div.transfer-btn {
 }
 .detail-infod>p:before{
     position: absolute;
-    content: "·";
+    content: "Â·";
     left: -6px;
 }
 .detail-btnd{}
 .detail-btnd>button{
-padding: 0;
-border: 0;
-background-color: transparent;
-outline: none;
-cursor: pointer;
+
+padding: 0;
+
+border: 0;
+
+background-color: transparent;
+
+outline: none;
+
+cursor: pointer;
 }
 .detail-btnd>button>img{
-    width: 100px;
+    
+width: 100px;
 }
 
-
+.map-dlog-close{
+    
+position: absolute;
+    
+top: -73px;
+    
+width: 30px;
+    
+height: 30px;
+    
+background-color: #fedf2a;
+    
+right: -15px;
+    
+z-index: 20;
+    
+background-image: url(../img/guide_close.png);
+    
+border-radius: 50%;
+    
+background-size: 32px auto;
+    
+background-position: center;
+    
+background-repeat: no-repeat;
+}
 
 
 
@@ -1020,5 +1089,3 @@ div.dev-btn {
     -moz-transition: all 0.5s;
     transition: all 0.5s;
 }
-
-s

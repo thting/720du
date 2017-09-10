@@ -1,0 +1,37 @@
+
+.main{
+    background-color: rgb(255, 229, 44);
+    background-image: url(../img/bg_line.png);
+    background-position: center;
+}
+.content-wrapper{
+    position: absolute;
+    /* top: 60px; */
+    /* bottom: 60px; */
+    left: 10%;
+    /* right: 30px; */
+    background-color: #fff;
+    top: 50%;
+    width: 80%;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-height: 100%;
+    overflow-y: auto;
+    background-image: url(../img/bg_line.png);
+    background-position: center;
+}
+.content-text{
+    font-size: 14px;
+    margin: 0 20px 0 40px;
+    padding: 0px 0 27px;
+    color: #000;
+}
+.content-text>p{
+    text-indent: -13px;
+}
+.content-text>h3{
+    margin: 27px 0px 15px 0;
+    padding: 0 0 0 33px;
+}
